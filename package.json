@@ -1,0 +1,58 @@
+{
+  "name": "ftheme",
+  "version": "2.3.0",
+  "description": "Theme for developing fSD Wordpress Projects",
+  "private": true,
+  "author": "fSD",
+  "license": "ISC",
+  "main": "gulpfile.js",
+  "devDependencies": {
+    "@babel/cli": "^7.17.6",
+    "@babel/preset-env": "^7.16.11",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "browser-sync": "^2.27.9",
+    "del": "^6.0.0",
+    "eslint": "^8.12.0",
+    "eslint-config-standard": "^16.0.3",
+    "eslint-plugin-import": "^2.25.4",
+    "eslint-plugin-node": "^11.1.0",
+    "eslint-plugin-promise": "^6.0.0",
+    "eslint-plugin-standard": "^5.0.0",
+    "gulp": "^4.0.2",
+    "gulp-autoprefixer": "^8.0.0",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-csso": "^4.0.1",
+    "gulp-eslint": "^6.0.0",
+    "gulp-header": "^2.0.9",
+    "gulp-livereload": "^4.0.2",
+    "gulp-load-plugins": "^2.0.7",
+    "gulp-notify": "^4.0.0",
+    "gulp-plumber": "^1.2.1",
+    "gulp-sass": "^5.1.0",
+    "gulp-sass-lint": "^1.4.0",
+    "gulp-size": "^4.0.1",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "gulp-watch": "^5.0.1",
+    "node-sass": "^7.0.1",
+    "run-sequence": "^2.2.1",
+    "sass": "^1.49.10"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.fsd.rs:web/WProject.git"
+  },
+  "config": {
+    "domain": "wproject.local"
+  },
+  "dependencies": {
+    "@babel/core": "^7.20.12",
+    "imagemin": "^8.0.1",
+    "npm": "^8.6.0"
+  }
+}
