@@ -1,0 +1,98 @@
+.m-jobApp {
+  padding: 70px 0;
+
+  &__title {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 400;
+  }
+
+  &__item {
+    border: 1px solid $black;
+    padding: 20px;
+    transition: ease .2s;
+    margin-bottom: 20px;
+
+    @include media-up(l) {
+      margin-bottom: 0;
+    }
+
+    &:hover {
+      .a-line {
+        &::after {
+          width: 160px;
+        }
+      }
+    }
+
+    &.-right {
+      border: 0;
+
+      .a-line {
+        display: none;
+      }
+
+      h3 {
+        margin-bottom: 20px;
+      }
+    }
+
+    &--textIcon {
+      display: flex;
+      align-items: center;
+      line-height: 1;
+
+      &:not(:last-child) {
+        margin-bottom: 5px;
+      }
+
+      p {
+        margin-bottom: 0;
+        font-weight: 300;
+
+        @include media-down(m) {
+          font-size: 13px;
+        }
+      }
+
+      svg {
+        margin-right: 10px;
+        min-width: 20px;
+
+        .-right & {
+          fill: green;
+        }
+      }
+    }
+
+    &--apply {
+      color: $white;
+      background-color: $black;
+      padding: 10px 30px;
+      line-height: 1;
+      display: inline-block;
+      margin-top: 20px;
+      border: 1px solid $black;
+      border-radius: 0 6px 0 6px;
+      font-weight: 700;
+    }
+
+    &--bottomTitle {
+      font-weight: 700;
+      margin: 30px 0 0 0;
+      color: $black;
+      font-family: 'Dosis';
+      font-size: 18px;
+    }
+
+    h3 {
+      @include media-down(m) {
+        font-size: 24px;
+      }
+    }
+  }
+
+  .a-line {
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,47 @@
+.m-headerAbout {
+  background-size: cover;
+  background-position: center;
+  position: relative;
+
+  &::after {
+    content: '';
+    background: linear-gradient(90deg, #000 0, #000 0%, rgba(0,0,0, .1) 100%, rgba(0,0,0, .3) 75%);
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 0;
+  }
+
+  &__content{
+    z-index: 1;
+    position: relative;
+
+    &--text {
+      color: $white;
+      padding: 200px 0;
+
+      h1 {
+        text-transform: uppercase;
+        font-weight: 900;
+        color: $white;
+        font-size: 45px;
+        line-height: 1.1;
+        transition: ease .3s;
+        display: inline-block;
+
+        &:hover {
+          color: $red;
+          letter-spacing: 2px;
+        }
+      }
+
+      p {
+        color: $red;
+        font-size: 13px;
+        font-weight: 300;
+      }
+    }
+  }
+}

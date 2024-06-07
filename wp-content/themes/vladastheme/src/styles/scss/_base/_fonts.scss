@@ -1,0 +1,74 @@
+// Use $font-path from _vars/_base.scss as path to fonts folder or update it here
+// Use https://transfonter.org/ to generate fonts and update font path here
+// Default font path (relative to style.css) is ../fonts (that is value of $font-path)
+
+@font-face {
+    font-family: 'Catamaran';
+    src: url('#{$font-path}/Catamaran/Catamaran-Light.woff2') format('woff2'),
+    url('#{$font-path}/Catamaran/Catamaran-Light.woff') format('woff'),
+    url('#{$font-path}/Catamaran/Catamaran-Light.svg#Catamaran-Light') format('svg');
+    font-weight: 300;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Catamaran';
+    src: url('#{$font-path}/Catamaran/Catamaran-Regular.woff2') format('woff2'),
+    url('#{$font-path}/Catamaran/Catamaran-Regular.woff') format('woff'),
+    url('#{$font-path}/Catamaran/Catamaran-Regular.svg#Catamaran-Regular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Catamaran';
+    src: url('#{$font-path}/Catamaran/Catamaran-Medium.woff2') format('woff2'),
+    url('#{$font-path}/Catamaran/Catamaran-Medium.woff') format('woff'),
+    url('#{$font-path}/Catamaran/Catamaran-Medium.svg#Catamaran-Medium') format('svg');
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Catamaran';
+    src: url('#{$font-path}/Catamaran/Catamaran-Bold.woff2') format('woff2'),
+    url('#{$font-path}/Catamaran/Catamaran-Bold.woff') format('woff'),
+    url('#{$font-path}/Catamaran/Catamaran-Bold.svg#Catamaran-Bold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Catamaran';
+    src: url('#{$font-path}/Catamaran/Catamaran-ExtraBold.woff2') format('woff2'),
+    url('#{$font-path}/Catamaran/Catamaran-ExtraBold.woff') format('woff'),
+    url('#{$font-path}/Catamaran/Catamaran-ExtraBold.svg#Catamaran-ExtraBold') format('svg');
+    font-weight: 900;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Dosis';
+    src: url('#{$font-path}/Dosis/Dosis-Regular.woff2') format('woff2'),
+    url('#{$font-path}/Dosis/Dosis-Regular.woff') format('woff'),
+    url('#{$font-path}/Dosis/Dosis-Regular.svg#Dosis-Regular') format('svg');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+@font-face {
+    font-family: 'Dosis';
+    src: url('#{$font-path}/Dosis/Dosis-Bold.woff2') format('woff2'),
+    url('#{$font-path}/Dosis/Dosis-Bold.woff') format('woff'),
+    url('#{$font-path}/Dosis/Dosis-Bold.svg#Dosis-Bold') format('svg');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+

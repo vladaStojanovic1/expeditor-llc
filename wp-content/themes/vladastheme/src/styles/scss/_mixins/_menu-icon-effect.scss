@@ -1,0 +1,24 @@
+@mixin menu-icon-effect {
+  .m-nav__hamburger {
+    z-index: 111;
+
+    span {
+      &:nth-child(1) {
+        transition: ease 0.2s;
+        transform: rotate(-45deg) translate(-3px, 0);
+        background-color: $white;
+      }
+
+      &:nth-child(2) {
+        opacity: 0;
+        margin: 0;
+      }
+
+      &:nth-child(3) {
+        transition: ease 0.2s;
+        transform: rotate(45deg) translate(-2px, 0);
+        background-color: $white;
+      }
+    }
+  }
+}

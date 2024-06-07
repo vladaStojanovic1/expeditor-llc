@@ -1,0 +1,20 @@
+// Atoms
+@import '_components/_atoms/atom';
+
+// Modules
+@import '_components/_modules/module';
+
+// Pages
+@import '_components/_pages/page';
+
+// Navigation
+@import '_components/_nav/navigation';
+@import '_components/_nav/responsive-nav';
+
+// Headers
+@import '_components/_headers/header-careers';
+@import '_components/_headers/header-home';
+@import '_components/_headers/header-about';
+
+//Footer
+@import '_components/footer/footer';

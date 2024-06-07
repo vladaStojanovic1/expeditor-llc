@@ -1,0 +1,187 @@
+.m-appForm {
+  margin-top: 50px;
+  padding-bottom: 100px;
+
+  &__center {
+    justify-content: center;
+  }
+
+  h2 {
+    margin: 30px 0;
+    text-align: center;
+    font-size: 30px;
+  }
+
+  label {
+    //color: $gray-7;
+    color: $black;
+    font-size: 12px;
+    font-weight: 700;
+    padding: 0 !important;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+
+    input {
+      border: 0;
+      border-bottom: 1px solid $gray-5;
+      outline: none;
+      width: 100%;
+      padding: 0;
+      height: auto;
+    }
+
+    select {
+      border: 1px solid $gray-5;
+      outline: none;
+    }
+
+
+    .wpcf7-not-valid-tip {
+      font-size: 9px;
+      text-transform: initial;
+    }
+
+    &:not(.country-state-city) {
+      display: flex;
+      flex-direction: column;
+    }
+  }
+
+  .wpcf7-form-control {
+    display: flex;
+
+    label {
+      margin-bottom: 0;
+    }
+  }
+
+  ul {
+    margin-top: 10px;
+
+    li {
+      list-style: disc;
+      font-size: 13px;
+      color: $gray-6;
+      text-transform: initial;
+      font-weight: 400;
+      margin-left: 20px;
+    }
+  }
+
+  textarea {
+    border: 1px solid $gray-5;
+    outline: none;
+    width: 100%;
+  }
+
+  .wpcf7-submit {
+    background-color: $black;
+    border: 0;
+    cursor: pointer;
+    display: flex;
+    margin: 0 auto;
+    color: $white;
+    transition: ease .2s;
+    width: auto;
+    padding: 10px 30px;
+    font-weight: 700;
+    border-radius: 0 6px 0 6px;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+
+
+  .wpcf7-response-output {
+    margin: 0;
+    display: flex;
+    justify-content: center;
+  }
+
+  .submit-spinner {
+    position: relative;
+
+    .wpcf7-spinner {
+      position: absolute;
+      left: 0;
+      right: 0;
+      margin-left: auto;
+      margin-right: auto;
+      top: 3px;
+    }
+
+  }
+
+  .country-city-state {
+    display: flex;
+    flex-direction: column;
+
+    @include media-up(s) {
+      flex-direction: row;
+    }
+
+    & > span {
+      &:not(:last-child) {
+        margin-bottom: 10px;
+      }
+
+      @include media-up(s) {
+        &:not(:last-child) {
+          margin-right: 10px;
+          margin-bottom: 0;
+        }
+      }
+
+    }
+  }
+
+  .endorsements {
+    .wpcf7-checkbox {
+      flex-direction: column;
+      @include media-up(s) {
+        flex-direction: row;
+      }
+    }
+
+    .wpcf7-list-item {
+      @include media-down(s) {
+        label {
+          flex-direction: row;
+
+          input {
+            width: auto;
+            margin-right: 10px;
+          }
+        }
+      }
+    }
+  }
+
+  .wpcf7-form-control-wrap {
+    margin-top: 5px;
+  }
+
+  .wpcf7-list-item-label {
+    text-transform: initial;
+    font-weight: 400;
+  }
+
+  form.submitting  {
+    .wpcf7-submit {
+      color: transparent;
+    }
+  }
+
+  .wpcf7-response-output {
+    border-color: $red;
+    color: $red;
+    text-align: center;
+  }
+
+  .wpcf7 form.sent .wpcf7-response-output {
+    color: $green;
+    border-color: $green;
+  }
+}

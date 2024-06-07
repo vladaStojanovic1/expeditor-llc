@@ -1,0 +1,52 @@
+[19-Jan-2023 15:19:21 UTC] PHP Warning:  strpos() expects parameter 1 to be string, array given in /home/firmacaf/expeditor-llc.com/wp-includes/blocks.php on line 20
+[14-Mar-2023 22:20:13 UTC] PHP Warning:  call_user_func_array() expects parameter 1 to be a valid callback, function 'default_password_nag_handler' not found or invalid function name in /home/firmacaf/expeditor-llc.com/wp-includes/class-wp-hook.php on line 308
+[16-Mar-2023 20:03:28 UTC] PHP Fatal error:  Uncaught Error: Class 'WP_Privacy_Data_Export_Requests_List_Table' not found in /home/firmacaf/expeditor-llc.com/wp-admin/includes/deprecated.php:1530
+Stack trace:
+#0 /home/firmacaf/expeditor-llc.com/wp-admin/includes/admin.php(94): require_once()
+#1 /home/firmacaf/expeditor-llc.com/wp-admin/admin-ajax.php(36): require_once('/home/firmacaf/...')
+#2 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-admin/includes/deprecated.php on line 1530
+[16-Mar-2023 20:14:49 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_userdata() in /home/firmacaf/expeditor-llc.com/wp-includes/user.php:662
+Stack trace:
+#0 /home/firmacaf/expeditor-llc.com/wp-admin/includes/user.php(476): get_user_option('default_passwor...')
+#1 /home/firmacaf/expeditor-llc.com/wp-includes/class-wp-hook.php(308): default_password_nag_handler('')
+#2 /home/firmacaf/expeditor-llc.com/wp-includes/class-wp-hook.php(332): WP_Hook->apply_filters(NULL, Array)
+#3 /home/firmacaf/expeditor-llc.com/wp-includes/plugin.php(517): WP_Hook->do_action(Array)
+#4 /home/firmacaf/expeditor-llc.com/wp-admin/admin-ajax.php(45): do_action('admin_init')
+#5 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-includes/user.php on line 662
+[23-Mar-2023 07:55:53 UTC] PHP Fatal error:  Uncaught Error: Class '\W3TC\ObjectCache_WpObjectCache_Regular' not found in /home/firmacaf/expeditor-llc.com/wp-content/plugins/w3-total-cache/Dispatcher.php:16
+Stack trace:
+#0 /home/firmacaf/expeditor-llc.com/wp-content/plugins/w3-total-cache/ObjectCache_WpObjectCache.php(13): W3TC\Dispatcher::component('ObjectCache_WpO...')
+#1 /home/firmacaf/expeditor-llc.com/wp-content/plugins/w3-total-cache/Dispatcher.php(16): W3TC\ObjectCache_WpObjectCache->__construct()
+#2 /home/firmacaf/expeditor-llc.com/wp-content/object-cache.php(30): W3TC\Dispatcher::component('ObjectCache_WpO...')
+#3 /home/firmacaf/expeditor-llc.com/wp-includes/load.php(730): wp_cache_init()
+#4 /home/firmacaf/expeditor-llc.com/wp-settings.php(131): wp_start_object_cache()
+#5 /home/firmacaf/expeditor-llc.com/wp-config.php(108): require_once('/home/firmacaf/...')
+#6 /home/firmacaf/expeditor-llc.com/wp-load.php(50): require_once('/home/firmacaf/...')
+#7 /home/firmacaf/expeditor-llc.com/wp-admin/admin-ajax.php(22): require_once('/home/firmacaf/...')
+# in /home/firmacaf/expeditor-llc.com/wp-content/plugins/w3-total-cache/Dispatcher.php on line 16
+[29-Mar-2023 14:13:56 UTC] PHP Parse error:  syntax error, unexpected ', arra', expecting ')' in /home/firmacaf/expeditor-llc.com/wp-includes/user.php on line 3991
+[29-Mar-2023 14:14:04 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting ';' in /home/firmacaf/expeditor-llc.com/wp-includes/rest-api.php on line 1336
+[29-Mar-2023 14:14:22 UTC] PHP Parse error:  syntax error, unexpected end of file in /home/firmacaf/expeditor-llc.com/wp-includes/update.php on line 432
+[29-Mar-2023 14:15:15 UTC] PHP Parse error:  syntax error, unexpected end of file, expecting ')' in /home/firmacaf/expeditor-llc.com/wp-includes/rest-api/fields/class-wp-rest-meta-fields.php on line 444
+[10-Aug-2023 12:20:37 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function W3TC\Util_Environment::is_dbcluster(), 0 passed in /home/firmacaf/expeditor-llc.com/wp-content/db.php on line 56 and exactly 1 expected in /home/firmacaf/expeditor-llc.com/wp-content/plugins/w3-total-cache/Util_Environment.php:176
+Stack trace:
+#0 /home/firmacaf/expeditor-llc.com/wp-content/db.php(56): W3TC\Util_Environment::is_dbcluster()
+#1 /home/firmacaf/expeditor-llc.com/wp-includes/load.php(666): require_once('/home/firmacaf/...')
+#2 /home/firmacaf/expeditor-llc.com/wp-settings.php(124): require_wp_db()
+#3 /home/firmacaf/expeditor-llc.com/wp-config.php(108): require_once('/home/firmacaf/...')
+#4 /home/firmacaf/expeditor-llc.com/wp-load.php(50): require_once('/home/firmacaf/...')
+#5 /home/firmacaf/expeditor-llc.com/wp-admin/upgrade.php(18): require('/home/firmacaf/...')
+#6 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-content/plugins/w3-total-cache/Util_Environment.php on line 176
+[10-Aug-2023 12:20:37 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function W3TC\Util_Environment::is_dbcluster(), 0 passed in /home/firmacaf/expeditor-llc.com/wp-content/db.php on line 56 and exactly 1 expected in /home/firmacaf/expeditor-llc.com/wp-content/plugins/w3-total-cache/Util_Environment.php:176
+Stack trace:
+#0 /home/firmacaf/expeditor-llc.com/wp-content/db.php(56): W3TC\Util_Environment::is_dbcluster()
+#1 /home/firmacaf/expeditor-llc.com/wp-includes/load.php(666): require_once('/home/firmacaf/...')
+#2 /home/firmacaf/expeditor-llc.com/wp-settings.php(124): require_wp_db()
+#3 /home/firmacaf/expeditor-llc.com/wp-config.php(108): require_once('/home/firmacaf/...')
+#4 /home/firmacaf/expeditor-llc.com/wp-load.php(50): require_once('/home/firmacaf/...')
+#5 /home/firmacaf/expeditor-llc.com/wp-admin/upgrade.php(18): require('/home/firmacaf/...')
+#6 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-content/plugins/w3-total-cache/Util_Environment.php on line 176

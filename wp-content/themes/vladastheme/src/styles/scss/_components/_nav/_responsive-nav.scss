@@ -1,0 +1,29 @@
+.-mobile {
+  @include menu-icon-effect;
+
+  .m-nav__links ul {
+    visibility: visible;
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80%;
+    height: 100%;
+    transition: transform ease-out 0.2s;
+    transform: translate3d(0, 0, 0);
+    background: linear-gradient(270deg,#000 0,#000 0%,#3f3f40 0%,#262626 75%);
+    z-index: 22;
+    text-align: left;
+    border-left: 3px solid $red;
+    padding: 100px 0 0 40px;
+
+    @include media-up(s) {
+      width: 60%;
+      text-align: center;
+      padding: 100px 0 0;
+    }
+
+    @include media-up(m) {
+      transition: none;
+    }
+  }
+}

@@ -1,0 +1,52 @@
+[08-Jul-2023 12:42:36 Europe/Belgrade] PHP Fatal error:  Uncaught Error: Call to undefined function get_locale() in /home/firmacaf/expeditor-llc.com/wp-admin/includes/admin.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-admin/includes/admin.php on line 16
+[08-Jul-2023 12:42:38 Europe/Belgrade] PHP Fatal error:  Uncaught Error: Call to undefined function get_locale() in /home/firmacaf/expeditor-llc.com/wp-admin/includes/admin.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-admin/includes/admin.php on line 16
+[14-Sep-2023 01:06:48 Europe/Belgrade] PHP Fatal error:  Uncaught Error: Call to undefined function get_locale() in /home/firmacaf/expeditor-llc.com/wp-admin/includes/admin.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-admin/includes/admin.php on line 16
+[14-Sep-2023 01:06:48 Europe/Belgrade] PHP Fatal error:  Uncaught Error: Call to undefined function get_locale() in /home/firmacaf/expeditor-llc.com/wp-admin/includes/admin.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-admin/includes/admin.php on line 16
+[14-Sep-2023 01:07:05 Europe/Belgrade] PHP Fatal error:  Uncaught Error: Call to undefined function get_locale() in /home/firmacaf/expeditor-llc.com/wp-admin/includes/admin.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-admin/includes/admin.php on line 16
+[14-Sep-2023 01:07:06 Europe/Belgrade] PHP Fatal error:  Uncaught Error: Call to undefined function get_locale() in /home/firmacaf/expeditor-llc.com/wp-admin/includes/admin.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-admin/includes/admin.php on line 16
+[05-Feb-2024 02:01:01 Europe/Belgrade] PHP Fatal error:  Uncaught Error: Call to undefined function __() in /home/firmacaf/expeditor-llc.com/wp-admin/includes/file.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-admin/includes/file.php on line 16
+[06-Mar-2024 15:48:16 Europe/Belgrade] PHP Fatal error:  Uncaught Error: Call to undefined function __() in /home/firmacaf/expeditor-llc.com/wp-admin/includes/file.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-admin/includes/file.php on line 16
+[19-Mar-2024 12:25:00 Europe/Belgrade] PHP Fatal error:  Uncaught Error: Call to undefined function __() in /home/firmacaf/expeditor-llc.com/wp-admin/includes/file.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-admin/includes/file.php on line 16
+[29-Mar-2024 05:21:37 Europe/Belgrade] PHP Fatal error:  Uncaught Error: Call to undefined function __() in /home/firmacaf/expeditor-llc.com/wp-admin/includes/file.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-admin/includes/file.php on line 16
+[23-May-2024 09:16:54 Europe/Belgrade] PHP Fatal error:  Uncaught Error: Call to undefined function __() in /home/firmacaf/expeditor-llc.com/wp-admin/includes/file.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-admin/includes/file.php on line 16
+[23-May-2024 23:13:22 Europe/Belgrade] PHP Fatal error:  Uncaught Error: Call to undefined function __() in /home/firmacaf/expeditor-llc.com/wp-admin/includes/file.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-admin/includes/file.php on line 16
+[29-May-2024 00:39:48 Europe/Belgrade] PHP Fatal error:  Uncaught Error: Call to undefined function __() in /home/firmacaf/expeditor-llc.com/wp-admin/includes/file.php:16
+Stack trace:
+#0 {main}
+  thrown in /home/firmacaf/expeditor-llc.com/wp-admin/includes/file.php on line 16

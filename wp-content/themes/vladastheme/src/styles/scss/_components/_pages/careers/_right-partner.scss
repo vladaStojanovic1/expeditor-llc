@@ -1,0 +1,31 @@
+.m-partner {
+  background-color: $gray-2;
+  padding: 100px 0;
+  text-align: center;
+  margin-bottom: 50px;
+
+  .a-line {
+    margin: 0 auto;
+  }
+
+  p {
+    margin: 0;
+    margin-top: 20px;
+  }
+}
+
+.home {
+  .m-partner {
+    margin-top: 50px;
+  }
+}
+
+.page-template-template-careers {
+  .m-partner {
+    padding: 70px 0;
+
+    p {
+      display: none;
+    }
+  }
+}

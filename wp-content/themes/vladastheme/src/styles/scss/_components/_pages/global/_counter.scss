@@ -1,0 +1,73 @@
+.m-counter {
+  margin-bottom: 100px;
+
+  &__top {
+    text-align: center;
+
+    .a-line {
+      margin: 0 auto;
+    }
+  }
+
+
+  &__title {
+    svg {
+      fill: #e4e435;
+    }
+  }
+
+  &__text {
+    margin: 30px 0;
+  }
+
+  &__button {
+    font-weight: 700;
+    padding: 5px 30px;
+    border: 2px solid $black;
+    color: $black;
+    font-size: 20px;
+    display: inline-block;
+    border-radius: 0 6px 0 6px;
+    margin-bottom: 35px;
+
+    &:hover {
+      &.-effectTwo {
+        color: $white;
+
+        &::after {
+          background-color: $black;
+          border-color: $black;
+        }
+      }
+    }
+  }
+
+  &__item {
+    text-align: center;
+
+    p {
+        font-family: 'Dosis';
+    }
+  }
+
+  .counterOne {
+    text-transform: uppercase;
+    font-weight: 900;
+    color: $black;
+    font-size: 45px;
+    line-height: 1.1;
+    font-family: 'Dosis';
+
+    @include media-up(s) {
+      font-size: 55px;
+    }
+
+    span {
+      text-transform: lowercase;
+
+      @media (min-width: 900px) {
+        display: none;
+      }
+    }
+  }
+}

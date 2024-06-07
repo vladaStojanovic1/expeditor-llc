@@ -1,0 +1,150 @@
+.m-contact {
+  background: linear-gradient(130deg,#000 0,#000 0%,#3f3f40 100%,#262626 75%);
+  margin-top: 50px;
+  margin-bottom: 60px;
+  padding: 30px 0;
+
+  @include media-up(s) {
+    padding: 40px 20px;
+  }
+
+  @include media-up(l) {
+    margin-top: 70px;
+  }
+
+  &__top {
+    text-align: center;
+    margin-bottom: 50px;
+
+    h2 {
+      text-transform: uppercase;
+      color: $white;
+    }
+
+    p {
+      color: $white;
+      margin-top: 20px;
+    }
+
+    .a-line {
+      margin: 0 auto;
+    }
+  }
+
+  &__info {
+    border-bottom: 1px solid $gray-7;
+    padding-bottom: 20px;
+
+    div {
+      display: flex;
+      align-items: center;
+
+      &:not(:last-child) {
+        margin-bottom: 20px;
+      }
+
+      @include media-up(s) {
+        &:not(:last-child) {
+          margin-bottom: 10px;
+        }
+      }
+    }
+
+    p {
+      &:first-child {
+        font-weight: 700;
+        margin-right: 10px;
+        min-width: 100px;
+        font-family: 'Dosis';
+      }
+
+      &:last-child {
+        opacity: .5;
+      }
+    }
+
+    a, p {
+      color: $white;
+      margin-bottom: 0;
+      font-weight: 500;
+      font-size: 13px;
+      line-height: 1.2;
+      transition: ease .2s;
+
+      &:hover {
+        color: $white;
+        opacity: 1;
+      }
+    }
+
+    a {
+      opacity: .5;
+    }
+
+    svg {
+      fill: $white;
+      margin-right: 10px;
+      min-width: 25px;
+
+      @include media-up(s) {
+        margin-right: 20px;
+      }
+    }
+  }
+
+  &__social {
+    display: flex;
+    justify-content: flex-end;
+    padding: 20px;
+
+    a {
+      &:not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
+
+  &__maps {
+    margin-bottom: 40px;
+
+    @include media-up(l) {
+      margin-bottom: 0;
+    }
+
+    .mapouter,.gmap_canvas {
+      width: 100%;
+      height: 100%;
+      min-height: 200px;
+    }
+
+    p {
+      height: 100%;
+      margin-bottom: 0;
+    }
+
+    iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 200px;
+    }
+  }
+
+  &__bottom {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 25px;
+
+    &--hours {
+      p {
+        color: $white;
+        margin-bottom: 0;
+        font-weight: 700;
+        margin-right: 10px;
+        min-width: 100px;
+        font-family: 'Dosis';
+        font-size: 13px;
+      }
+    }
+  }
+}

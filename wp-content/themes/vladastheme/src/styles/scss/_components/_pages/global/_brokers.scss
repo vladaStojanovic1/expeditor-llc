@@ -1,0 +1,34 @@
+.m-brokers {
+  margin-bottom: 100px;
+
+  &__title {
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .swiper-wrapper {
+    display: flex;
+    align-items: center;
+  }
+
+  .swiper-slide {
+    img {
+      max-width: 150px;
+    }
+  }
+
+  //.swiper-slide {
+  //  @include media-up(l) {
+  //    img {
+  //      transition: all 1s;
+  //      filter: grayscale(100%);
+  //    }
+  //
+  //    &:hover {
+  //      img {
+  //        filter: grayscale(0);
+  //      }
+  //    }
+  //  }
+  //}
+}

@@ -1,0 +1,63 @@
+.m-effect {
+  &.-zoom {
+    animation: zoom-in-zoom-out .5s ease 3500ms backwards;
+  }
+
+  &.-dropIn {
+    animation: drop-in 3s ease 200ms backwards;
+  }
+
+  &.-trin {
+    animation-name: trin;
+    animation-duration: 3.5s;
+    animation-iteration-count: 3;
+    animation-timing-function: linear;
+  }
+
+
+  @keyframes zoom-in-zoom-out {
+    0% {
+      transform: scaleY(1);
+    }
+    50% {
+      transform: scaleY(1.2);
+    }
+    100% {
+      transform: scaleY(1);
+    }
+  }
+
+  @keyframes drop-in {
+    from {
+      opacity: 0;
+      transform: translateY(-100px);
+    }
+    to {
+      opacity: 1;
+      transform: translate(0px);
+    }
+  }
+
+  @keyframes trin {
+
+    from {
+      transform:rotate3d(0, 0, 1, 0deg);
+    }
+    20%, 32%, 44%, 56%, 68% {
+      transform: rotate3d(0, 0, 1, 0deg);
+    }
+    23%, 35%, 47%, 59%, 71% {
+      transform: rotate3d(0,0,1,15deg);
+    }
+    26%, 38%, 50%, 62%, 74% {
+      transform: rotate3d(0,0,1,0deg);
+    }
+    29%, 41%, 53%, 65%, 77% {
+      transform: rotate3d(0,0,1,-15deg);
+    }
+    80% {
+      transform:rotate3d(0, 0, 1, 0deg);
+    }
+
+  }
+}

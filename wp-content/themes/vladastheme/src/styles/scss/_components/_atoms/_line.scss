@@ -1,0 +1,19 @@
+.a-line {
+  position: relative;
+  display: flex;
+  transform: skew(-0.09turn, 0deg);
+  height: 5px;
+  width: 120px;
+  margin-top: 5px;
+
+  &::after {
+    content: '';
+    height: 5px;
+    width: 100%;
+    background-color: $red;
+    position: absolute;
+    top: 0;
+    left: 4px;
+    transition: all .2s;
+  }
+}

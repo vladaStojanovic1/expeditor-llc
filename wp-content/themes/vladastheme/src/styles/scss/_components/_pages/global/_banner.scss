@@ -1,0 +1,41 @@
+.m-banner {
+  background-size: cover;
+  //background-position: center;
+  padding: 30px;
+  margin-bottom: 50px;
+  background-position: 0 60%;
+  background-repeat: no-repeat;
+
+  @include media-up(s) {
+    //padding: 70px;
+    padding: 120px;
+  }
+
+  &__content {
+    background-color: rgba(0,0,0, .6);
+
+    &--center {
+      align-items: center;
+    }
+
+    &--text {
+      text-transform: uppercase;
+      font-weight: 900;
+      color: $white;
+      font-size: 30px;
+      line-height: 1.1;
+      padding: 20px;
+      text-align: center;
+
+      @include media-up(m) {
+        font-size: 45px;
+      }
+    }
+  }
+}
+
+.page-template-template-home {
+  .m-banner {
+    background-position: 0 55%;
+  }
+}

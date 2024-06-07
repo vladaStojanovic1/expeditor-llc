@@ -1,0 +1,5 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/firmacaf/expeditor-llc.com/
+    - /bin/cp -r * $DEPLOYPATH

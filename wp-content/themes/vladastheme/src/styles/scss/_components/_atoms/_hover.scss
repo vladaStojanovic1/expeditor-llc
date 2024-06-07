@@ -1,0 +1,91 @@
+.a-hover {
+  transition: all 0.2s;
+  z-index: 1;
+  background: none;
+  position: relative;
+
+  &::after {
+    transition: all 0.2s;
+  }
+
+  &::after,
+  &::before {
+    background: $white;
+    content: '';
+    position: absolute;
+    z-index: -1;
+  }
+
+  &.-effectOne {
+    &::after {
+      height: 0;
+      left: 50%;
+      top: 50%;
+      width: 0;
+      border-radius: 0 6px 0 6px;
+    }
+
+    &:hover {
+      color: $black;
+
+      &::after {
+        background-color: $white;
+        height: 100%;
+        left: 0;
+        top: 0;
+        width: 100%;
+        z-index: -1;
+      }
+    }
+  }
+
+  &.-effectTwo {
+    overflow: hidden;
+
+    &::after {
+      height: 100%;
+      left: -38%;
+      top: 0;
+      transform: skew(50deg);
+      transition-duration: 0.5s;
+      transform-origin: top left;
+      width: 0;
+    }
+
+    &:hover {
+      color: $black;
+
+      &::after {
+        height: 100%;
+        width: calc(100% + 150px);
+        z-index: -1;
+        background-color: $white;
+        border: 2px solid $white;
+        border-left: 0;
+        border-right: 0;
+        //left: 0;
+      }
+    }
+  }
+
+  &.-effectText {
+    @include media-up(s) {
+      background-image: linear-gradient(
+        to right,
+        $red,
+        $red 50%,
+        $black 50%
+      );
+      background-size: 200% 100%;
+      background-position: -100%;
+      position: relative;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      transition: all 0.3s ease-in-out;
+    }
+
+    &:hover {
+      background-position: 0;
+    }
+  }
+}

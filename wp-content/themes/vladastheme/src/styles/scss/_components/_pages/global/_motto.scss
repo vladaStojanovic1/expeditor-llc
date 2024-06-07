@@ -1,0 +1,59 @@
+.m-motto {
+  background-color: $black;
+  //background: linear-gradient(90deg, #000 0, #000 0%, rgba(0,0,0, .3) 100%, rgba(0,0,0, .3) 75%);
+  padding: 20px;
+
+  @include media-up(s) {
+    padding: 0;
+  }
+
+  &__content {
+    align-items: center;
+
+    &--title {
+      text-transform: uppercase;
+      font-weight: 900;
+      color: $white;
+      font-size: 30px;
+      line-height: 1;
+      margin-bottom: 20px;
+
+      @include media-up(s) {
+        padding: 20px;
+        //line-height: 1.1;
+        margin-bottom: 0;
+      }
+
+      @include media-up(m) {
+        font-size: 45px;
+      }
+
+      span {
+        color: $red;
+      }
+    }
+
+    &--btn {
+      font-size: 30px;
+      color: $white;
+      font-weight: 700;
+      display: flex;
+      transition: all .3s;
+      font-family: 'Dosis';
+
+      &:hover {
+        color: $red;
+
+        svg {
+          //fill: $red;
+          stroke: $red;
+        }
+      }
+
+      svg {
+        order: -1;
+        transition: all .3s;
+      }
+    }
+  }
+}
