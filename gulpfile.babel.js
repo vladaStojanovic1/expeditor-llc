@@ -23,16 +23,6 @@
    distRoot = themeRoot + "/bundles",
    $ = gulpLoadPlugins(),
    reload = browserSync.reload,
-   banner = [
-     "/**",
-     " * <%= pkg.name %> - <%= pkg.description %>",
-     " * @version v<%= pkg.version %>",
-     " * @license <%= pkg.license %>",
-     " * @copyright 2021 fSD",
-     " * @link https://fsd.rs",
-     " */",
-     "",
-   ].join("\n"),
    AUTOPREFIXER_BROWSERS = ["last 2 versions"],
    SOURCES = [
      srcRoot + "/scripts/src/script.js",
