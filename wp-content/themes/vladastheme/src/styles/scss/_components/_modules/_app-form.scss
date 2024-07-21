@@ -184,4 +184,8 @@
     color: $green;
     border-color: $green;
   }
+
+  .wpcf7 form.invalid .wpcf7-response-output {
+    border-color: $red !important;
+  }
 }

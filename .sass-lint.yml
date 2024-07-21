@@ -77,8 +77,8 @@ rules:
   indentation: 0
   leading-zero: 1
   nesting-depth:
-      - 2
-      - max-depth: 4
+    - 2
+    - max-depth: 4
   property-sort-order: 0
   quotes: 1
   shorthand-values: 1
