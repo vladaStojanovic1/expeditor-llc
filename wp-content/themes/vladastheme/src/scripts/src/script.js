@@ -199,28 +199,31 @@
             }
         });
 
-        gsap.registerPlugin(ScrollTrigger);
 
-        let mm = gsap.matchMedia();
+        if (document.body.classList.contains('home')) {
+            gsap.registerPlugin(ScrollTrigger);
 
-        mm.add('(min-width:900px)', () => {
-            gsap.from(".counterOne", {
-                textContent: "0",
-                duration: 2,
-                modifiers: {
-                    textContent: value => formatNumber(value, 1) + " m"
-                },
-                // snap: { textContent: 1 },
-                scrollTrigger: {
-                    trigger: ".m-counter",
-                    start: "top bottom",
-                }
+            let mm = gsap.matchMedia();
+
+            mm.add('(min-width:900px)', () => {
+                gsap.from(".counterOne", {
+                    textContent: "0",
+                    duration: 2,
+                    modifiers: {
+                        textContent: value => formatNumber(value, 1) + " m"
+                    },
+                    // snap: { textContent: 1 },
+                    scrollTrigger: {
+                        trigger: ".m-counter",
+                        start: "top bottom",
+                    }
+                });
             });
-        });
 
-        function formatNumber(value, decimals) {
-            let s = (value).toLocaleString('en-US').split(".");
-            return decimals ? s[0] + "." + ((s[1] || "") + "00000000").substr(0, decimals) : s[0];
+            function formatNumber(value, decimals) {
+                let s = (value).toLocaleString('en-US').split(".");
+                return decimals ? s[0] + "." + ((s[1] || "") + "00000000").substr(0, decimals) : s[0];
+            }
         }
 
     });

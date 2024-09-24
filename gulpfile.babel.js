@@ -21,6 +21,12 @@ const themeRoot = "wp-content/themes/vladastheme",
     distRoot = themeRoot + "/bundles",
     $ = gulpLoadPlugins(),
     reload = browserSync.reload,
+    banner = [
+        '/**',
+        ' * @copyright vladasto',
+        ' */',
+        '',
+    ].join('\n'),
     AUTOPREFIXER_BROWSERS = ["last 2 versions"],
     SOURCES = [
         srcRoot + "/scripts/src/script.js",
