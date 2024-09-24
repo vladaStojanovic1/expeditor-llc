@@ -5,8 +5,9 @@
 
     <head>
         <meta charset="<?php bloginfo( 'charset' ); ?>">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width">
         <link rel="profile" href="http://gmpg.org/xfn/11">
+
 
         <?php if(has_site_icon()): ?>
             <link rel="icon" href="<?php echo get_site_icon_url(); ?>" type="image/x-icon" />
