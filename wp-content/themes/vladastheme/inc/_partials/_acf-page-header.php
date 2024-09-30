@@ -134,7 +134,7 @@ function headerAbout() {
     $about_title = get_field('about_title');
     $about_text = get_field('about_text');
     ?>
-    <header class="m-headerAbout" style="background-image: url(<?php echo $about_image; ?>);">
+    <header class="m-headerAbout" aria-label="<?php echo $about_image['alt']; ?>" style="background-image: url(<?php echo $about_image['url']; ?>);">
         <div class="_wr m-headerAbout__content">
             <div class="m-headerAbout__content--text overflow-hidden m-effect -dropIn">
                 <a href="#text-image">

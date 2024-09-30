@@ -5,8 +5,8 @@
             <?php while( have_rows('items_repeater') ): the_row();
                 $about_title = get_sub_field('about_title');
                 $about_text_bottom = get_sub_field('about_text_bottom');
-                $about_image = get_sub_field('about_image');
                 $random_text = get_sub_field('random_text');
+                $about_image = get_sub_field('about_image');
                 ?>
                 <div class="_w m-textImage__item <?php echo $random_text ? 'random-text' : ''; ?>">
                     <div class="_l6">
@@ -29,7 +29,7 @@
 
                     <div class="_l6 image">
                         <div>
-                            <img src="<?php echo $about_image; ?>" alt="">
+                            <img src="<?php echo $about_image['url']; ?>" alt="<?php echo $about_image['alt'] ?>">
                         </div>
                     </div>
                 </div>

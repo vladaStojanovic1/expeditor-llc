@@ -7,7 +7,7 @@ $site_logo = get_field('site_logo', 'option');
         <div class="m-nav__content">
             <div class="m-nav__content--logo">
                 <a href="/">
-                    <img src="<?php echo $site_logo; ?>" alt="expeditor logo">
+                    <img src="<?php echo $site_logo; ?>" alt="Expeditor LLC Logo - Reliable Freight Forwarding Solutions in Las Vegas">
                 </a>
             </div>
 
