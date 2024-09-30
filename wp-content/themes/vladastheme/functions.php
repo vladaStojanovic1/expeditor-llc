@@ -6,7 +6,7 @@ add_action( 'wp_enqueue_scripts', function () {
 
     if( WP_DEBUG === true ) {
         wp_enqueue_script( 'vladastheme-swiper', get_template_directory_uri() . '/src/scripts/src/swiper.js', array('jquery'), true );
-        wp_enqueue_script( 'vladastheme-script', get_template_directory_uri() . '/src/scripts/src/script.js', array('jquery'), true );
+        wp_enqueue_script( 'vladastheme-script', get_template_directory_uri() . '/bundles/scripts/scripts.min.js', array('jquery'), true );
     } else {
         wp_enqueue_script( 'vladastheme-swiper', get_template_directory_uri() . '/src/scripts/src/swiper.js', array('jquery'), true );
         wp_enqueue_script( 'vladastheme-script-min', get_template_directory_uri() . '/bundles/scripts/scripts.min.js', array('jquery'), true );

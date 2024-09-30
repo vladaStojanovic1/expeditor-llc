@@ -230,6 +230,7 @@
 
     $(window).on('load', function () {
 
+        console.log('testttttttttttt')
 
     });
 })(jQuery);

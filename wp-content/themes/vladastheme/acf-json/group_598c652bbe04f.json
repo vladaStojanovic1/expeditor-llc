@@ -16,8 +16,7 @@
                 "class": "",
                 "id": ""
             },
-            "return_format": "url",
-            "preview_size": "thumbnail",
+            "return_format": "array",
             "library": "all",
             "min_width": "",
             "min_height": "",
@@ -25,7 +24,9 @@
             "max_width": "",
             "max_height": "",
             "max_size": "",
-            "mime_types": "png"
+            "mime_types": "png",
+            "allow_in_bindings": 1,
+            "preview_size": "thumbnail"
         },
         {
             "key": "field_63d194de017e3",
@@ -66,5 +67,5 @@
     "active": true,
     "description": "",
     "show_in_rest": 0,
-    "modified": 1674679547
+    "modified": 1727717888
 }
