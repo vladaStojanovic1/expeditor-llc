@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+ */
 if( ! defined( 'ABSPATH' ) ) exit(); // Exit if accessed directly
 
 /**
@@ -60,15 +62,19 @@ class Extensions_Cf7_Admin_Setting
                 ];
                 wp_localize_script( 'ht-cf7-mailchimp-map-script', 'extcf7_mailchimp_map_data', $extcf7_mailchimp_map_data);
             }
+            if ( 'on' == htcf7ext_get_option('htcf7ext_opt_extensions', 'column_extension', 'off') ) {
+                wp_enqueue_script( 'ht-cf7-column-script', CF7_EXTENTIONS_PL_URL.'admin/assets/js/column.js', array('jquery'), CF7_EXTENTIONS_PL_VERSION, true);
+            }
 
         }
 
         if("toplevel_page_contat-form-list" === $hook){
-            wp_enqueue_style('jquery-datepicker-style', CF7_EXTENTIONS_PL_URL.'admin/assets/css/jquery-ui.css');
+            wp_enqueue_style('jquery-datepicker-style', CF7_EXTENTIONS_PL_URL.'admin/assets/css/jquery-ui.css', [], CF7_EXTENTIONS_PL_VERSION);
             wp_enqueue_script('jquery-ui-datepicker');
             wp_enqueue_script('jquery-ui-dialog');
 
             wp_dequeue_script('monsterinsights-admin-common-script');
+            wp_dequeue_script('wur_settings_cute_alert_script');
         }
 
     }
@@ -76,7 +82,7 @@ class Extensions_Cf7_Admin_Setting
 	function extcf7_form_data_page() {
        $layout_instance = $this->extcf7_layout_instance->get_layout_instance();
        if($layout_instance instanceof Extensions_Cf7_Form_Datalist_Render){
-            echo $layout_instance->cf7_layout_render();
+            echo wp_kses_post($layout_instance->cf7_layout_render());
        }
     }
 
@@ -103,7 +109,7 @@ class Extensions_Cf7_Admin_Setting
                     <tr>
                         <th scope="row"><?php echo esc_html__('Redirection Delay','cf7-extensions');?></th>
                         <td>
-                            <input type="text" class="regular-text" name="redirection_delay" value="<?php echo $redirection_delay; ?>">
+                            <input type="text" class="regular-text" name="redirection_delay" value="<?php echo esc_attr($redirection_delay); ?>">
                             <p><?php echo esc_html__('Input a positive integer value for the dalay of redirection. The values in milliseconds(Default:200)','cf7-extensions'); ?></p>
                         </td>
                     </tr>

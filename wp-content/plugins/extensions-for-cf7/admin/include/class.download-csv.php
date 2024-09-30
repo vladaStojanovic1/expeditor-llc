@@ -1,4 +1,7 @@
 <?php
+/**
+ * @phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+ */
 if( ! defined( 'ABSPATH' ) ) exit(); // Exit if accessed directly
 
 /**
@@ -33,7 +36,7 @@ class Extensions_Cf7_Csv
         $cf7_id          = !empty($_REQUEST['cf7_id']) ? absint($_REQUEST['cf7_id']) : 0;
         $csv_heading_row = $wpdb->get_results( 
             $wpdb->prepare( "SELECT * FROM $table_name
-            WHERE form_id = '%d' ORDER BY id DESC LIMIT 1", $cf7_id ),
+            WHERE form_id = %d ORDER BY id DESC LIMIT 1", $cf7_id ),
             OBJECT 
         );
 
@@ -47,7 +50,7 @@ class Extensions_Cf7_Csv
         $csv_heading_key    = array_keys( $csv_heading_row );
 
 
-        $total_data_rows   = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $table_name WHERE form_id = '%d' ", $cf7_id )); 
+        $total_data_rows   = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $table_name WHERE form_id = %d ", $cf7_id )); 
         $per_query_n       = 1000;
         $total_query_n     = ( $total_data_rows / $per_query_n );
         $csv_heading       = array(esc_html__( 'Date', 'cf7-extensions' ), esc_html__( 'Form Id', 'cf7-extensions' ));
@@ -69,7 +72,7 @@ class Extensions_Cf7_Csv
             $offset  = $k * $per_query_n;
             $results = $wpdb->get_results(
                 $wpdb->prepare("SELECT * FROM $table_name
-                    WHERE form_id = '%d' ORDER BY id DESC  LIMIT $offset, $per_query_n",
+                    WHERE form_id = %d ORDER BY id DESC  LIMIT $offset, $per_query_n",
                     $cf7_id
                 ),
                 OBJECT
@@ -110,7 +113,7 @@ class Extensions_Cf7_Csv
 		header("Content-Type: application/csv; "); 
 
 		readfile($filename);
-		unlink($filename);
+		wp_delete_file($filename);
         die();
     }
 		

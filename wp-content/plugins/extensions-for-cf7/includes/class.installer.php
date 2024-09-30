@@ -1,6 +1,7 @@
 <?php
 /**
  * Installer class
+ * @phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching, WordPress.DB.DirectDatabaseQuery.SchemaChange
  */
 class Extensions_Cf7_Installer {
 

@@ -1,7 +1,8 @@
 <?php
 /**
  * Contact Form Database Inialiaze
-*/
+ * @phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching,
+ */
 class Extensions_Cf7 {
 
   /**
@@ -97,6 +98,9 @@ class Extensions_Cf7 {
     if ( 'on' == htcf7ext_get_option('htcf7ext_opt_extensions', 'mailchimp_extension', 'on') ) {
       require_once ( CF7_EXTENTIONS_PL_PATH . 'includes/class.mailchimp-subscribe.php' );
     }
+    if( 'on' == htcf7ext_get_option('htcf7ext_opt_extensions', 'column_extension', 'on') ) {
+      require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.cf7-column.php' );
+    }
   
     if(is_admin()){
       require_once ( CF7_EXTENTIONS_PL_PATH . 'admin/include/class.download-csv.php' );
@@ -125,7 +129,7 @@ class Extensions_Cf7 {
           'status'
       ));
       if(empty($column_exists)) {
-          $wpdb->query("ALTER TABLE $table_name ADD COLUMN status ENUM('read', 'unread') DEFAULT 'unread' NOT NULL" );
+          $wpdb->query("ALTER TABLE $table_name ADD COLUMN status ENUM('read', 'unread') DEFAULT 'unread' NOT NULL" ); //phpcs:ignore WordPress.DB.DirectDatabaseQuery.SchemaChange
           $wpdb->query("UPDATE $table_name SET status = 'read'" );
       }
       update_option('extcf7_db_table_alter_status', true);
@@ -153,6 +157,7 @@ class Extensions_Cf7 {
   */
   public function extcf7_enqueue_script(){
 
+    wp_enqueue_style( 'cf7-extension-front-style', CF7_EXTENTIONS_PL_URL.'assets/css/cf7-extension-front-style.css', [], CF7_EXTENTIONS_PL_VERSION);
 
     if( 'on' == htcf7ext_get_module_option( 'htcf7ext_conditional_field_module_settings','conditional_field','conditional_field_enable','on') ) {
       wp_enqueue_script( 'extcf7-conditional-field-script', CF7_EXTENTIONS_PL_URL.'assets/js/conditional-field.js', array('jquery'), CF7_EXTENTIONS_PL_VERSION, true);
@@ -194,6 +199,10 @@ class Extensions_Cf7 {
         return;
       }
       $activation_url = wp_nonce_url( 'plugins.php?action=activate&amp;plugin=' . $contact_form_7 . '&amp;plugin_status=all&amp;paged=1&amp;s', 'activate-plugin_' . $contact_form_7 );
+      /*
+      * translators: %1$s: strong start tag
+      * translators: %2$s: strong end tag
+      */
       $message = sprintf( esc_html__( '%1$sExtensions For CF7 %2$s requires %1$s"Contact Form 7"%2$s plugin to be active. Please activate Contact Form 7 to continue.', 'cf7-extensions' ), '<strong>', '</strong>');
       $button_text = esc_html__( 'Activate Contact Form 7', 'cf7-extensions' );
     }else{
@@ -201,11 +210,15 @@ class Extensions_Cf7 {
         return;
       }
       $activation_url = wp_nonce_url( self_admin_url( 'update.php?action=install-plugin&plugin=contact-form-7' ), 'install-plugin_contact-form-7' );
+      /*
+      * translators: %1$s: strong start tag
+      * translators: %2$s: strong end tag
+      */
       $message = sprintf( esc_html__( '%1$sExtensions For CF7.%2$s requires %1$s"Contact Form 7"%2$s plugin to be installed and activated. Please install Contact Form 7 to continue.', 'cf7-extensions' ), '<strong>', '</strong>' );
       $button_text = esc_html__( 'Install Contact Form 7', 'cf7-extensions' );
     }
     $button = '<p><a href="' . $activation_url . '" class="button-primary">' . $button_text . '</a></p>';
-    printf( '<div class="error"><p>%1$s</p>%2$s</div>', wp_kses_post( $message ), $button );
+    printf( '<div class="error"><p>%1$s</p>%2$s</div>', wp_kses_post( $message ), wp_kses_post($button) );
   }
 
   /**

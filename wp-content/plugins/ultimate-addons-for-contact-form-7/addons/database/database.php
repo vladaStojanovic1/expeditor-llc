@@ -14,12 +14,13 @@ class UACF7_DATABASE {
 	public function __construct() {
 
 		add_action( 'admin_enqueue_scripts', array( $this, 'wp_enqueue_admin_script' ) );
-		add_action( 'wpcf7_before_send_mail', array( $this, 'uacf7_save_to_database' ) );
+		add_action( 'wpcf7_before_send_mail', array( $this, 'uacf7_save_to_database' ), 20, 4 );
 		add_action( 'admin_menu', array( $this, 'uacf7_add_db_menu' ), 11, 2 );
 		add_action( 'wp_ajax_uacf7_ajax_database_popup', array( $this, 'uacf7_ajax_database_popup' ) );
 		add_action( 'wp_ajax_uacf7_ajax_database_export_csv', array( $this, 'uacf7_ajax_database_export_csv' ) );
 		add_action( 'admin_init', array( $this, 'uacf7_create_database_table' ) );
 		//add_filter( 'wpcf7_load_js', '__return_false' );
+
 	}
 
 	//Create Ulimate Database   
@@ -37,7 +38,7 @@ class UACF7_DATABASE {
             PRIMARY KEY  (id)
         ) $charset_collate";
 
-		require_once ( ABSPATH . 'wp-admin/includes/upgrade.php' );
+		require_once( ABSPATH . 'wp-admin/includes/upgrade.php' );
 		dbDelta( $sql );
 	}
 
@@ -45,10 +46,13 @@ class UACF7_DATABASE {
 	 * Enqueue script Backend
 	 */
 
+
 	public function wp_enqueue_admin_script() {
 		wp_enqueue_style( 'database-admin-style', UACF7_ADDONS . '/database/assets/css/database-admin.css' );
 		wp_enqueue_script( 'database-admin', UACF7_ADDONS . '/database/assets/js/database-admin.js', array( 'jquery' ), null, true );
-		wp_localize_script( 'database-admin', 'database_admin_url',
+		wp_localize_script(
+			'database-admin',
+			'database_admin_url',
 			array(
 				'admin_url' => get_admin_url() . 'admin.php',
 				'ajaxurl' => admin_url( 'admin-ajax.php' ),
@@ -70,7 +74,7 @@ class UACF7_DATABASE {
 			__( 'Database', 'ultimate-addons-cf7' ),
 			'manage_options',
 			'ultimate-addons-db',
-			array( $this, 'uacf7_create_database_page' ),
+			apply_filters( 'uacf7_database_admin_page', array( $this, 'uacf7_create_database_page' ) ),
 		);
 	}
 
@@ -116,10 +120,12 @@ class UACF7_DATABASE {
 		} else {
 
 			global $wpdb;
-			$list_forms = get_posts( array(
-				'post_type' => 'wpcf7_contact_form',
-				'posts_per_page' => -1
-			) );
+			$list_forms = get_posts(
+				array(
+					'post_type' => 'wpcf7_contact_form',
+					'posts_per_page' => -1
+				)
+			);
 			?>
 
 			<div class="wrap uacf7-admin-cont">
@@ -225,7 +231,17 @@ class UACF7_DATABASE {
 	 * Ultimate form save into the database
 	 */
 	public function uacf7_save_to_database( $form ) {
-		require_once ( ABSPATH . 'wp-admin/includes/file.php' );
+		require_once( ABSPATH . 'wp-admin/includes/file.php' );
+
+		if ( ! is_plugin_active( 'ultimate-addons-for-contact-form-7-pro/ultimate-addons-for-contact-form-7-pro.php' ) ) {
+			if ( defined( 'UACF7_PRO_PATH_ADDONS' ) ) {
+				require_once( UACF7_PRO_PATH_ADDONS . '/database-pro/functions.php' );
+			} else {
+				// Handle the case when the pro plugin is not active and the constant is not defined
+				// You can add an error log, a fallback, or any other necessary action here
+				error_log( 'UACF7_PRO_PATH_ADDONS is not defined. Pro plugin might not be installed or active.' );
+			}
+		}
 		global $wpdb;
 		$encryptionKey = 'AES-256-CBC';
 		$table_name = $wpdb->prefix . 'uacf7_form';
@@ -315,13 +331,26 @@ class UACF7_DATABASE {
 			}
 		}
 
+		// Initialize the variable to avoid warnings
+		$extra_fields_data = [];
+
+		// Now, attempt to call the function if it exists
+		if ( function_exists( 'uacf7dp_add_more_fields' ) ) {
+			$extra_fields_data = uacf7dp_add_more_fields( $submission );
+		}
+
+		apply_filters( 'uacf7dp_send_form_data_before_insert', $insert_data, $extra_fields_data );
+
 		$insert_data = json_encode( $insert_data );
 
-		$wpdb->insert( $table_name, array(
-			'form_id' => $form->id(),
-			'form_value' => $insert_data,
-			'form_date' => current_time( 'Y-m-d H:i:s' ),
-		) );
+		$wpdb->insert(
+			$table_name,
+			array(
+				'form_id' => $form->id(),
+				'form_value' => $insert_data,
+				'form_date' => current_time( 'Y-m-d H:i:s' ),
+			)
+		);
 
 		$uacf7_db_insert_id = $wpdb->insert_id;
 
@@ -414,7 +443,7 @@ class UACF7_DATABASE {
 							<strong>' . esc_attr( $key ) . '</strong>
 						</td> 
 						<td>
-							<button id="signature_view_btn">' . esc_html( 'View' ) . '</button>
+							<button id="signature_view_btn">' . esc_html( 'View', 'ultimate-addons-cf7' ) . '</button>
 							<a class="" href="' . $srcAttribute . '" download="' . $fileNameWithoutExtension . '">
 								<button class="signature_bownload_btn">Download</button>
 							</a>
@@ -560,7 +589,7 @@ class UACF7_DATABASE {
  */
 
 if ( ! class_exists( 'WP_List_Table' ) ) {
-	require_once ( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
+	require_once( ABSPATH . 'wp-admin/includes/class-wp-list-table.php' );
 }
 
 /*
@@ -584,10 +613,12 @@ class uacf7_form_List_Table extends WP_List_Table {
 		$currentPage = $this->get_pagenum();
 		$totalItems = count( $data );
 
-		$this->set_pagination_args( array(
-			'total_items' => $totalItems,
-			'per_page' => $perPage
-		) );
+		$this->set_pagination_args(
+			array(
+				'total_items' => $totalItems,
+				'per_page' => $perPage
+			)
+		);
 
 		$data = array_slice( $data, ( ( $currentPage - 1 ) * $perPage ), $perPage );
 

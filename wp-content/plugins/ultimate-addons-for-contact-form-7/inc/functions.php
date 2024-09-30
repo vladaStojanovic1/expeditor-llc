@@ -11,9 +11,16 @@ if ( file_exists( UACF7_PATH . 'inc/class-setup-wizard.php' ) ) {
 	require_once UACF7_PATH . 'inc/class-setup-wizard.php';
 }
 
+//Require ultimate Promo Notice
+if ( file_exists( UACF7_PATH . 'inc/class-promo-notice.php' ) ) {
+
+    require_once ( UACF7_PATH .'inc/class-promo-notice.php');
+}
+
 if ( file_exists( UACF7_PATH . 'admin/admin-menu.php' ) ) {
 	require_once UACF7_PATH . 'admin/admin-menu.php';
 }
+
 
 
 
@@ -394,14 +401,14 @@ if ( ! function_exists( 'uacf7_review_notice' ) ) {
 								class="dashicons dashicons-dismiss"></span><?php _e( 'Never show again', 'ultimate-addons-cf7' ) ?>
 						</a></li>
 				</ul>
-				<button type="button" class="notice-dismiss review_notice_dismiss"><span
+				<button type="button" class="notice-dismiss review_notice_dismiss" data-status="never"><span
 						class="screen-reader-text"><?php _e( 'Dismiss this notice.', 'ultimate-addons-cf7' ) ?></span></button>
 			</div>
 
 			<!--   Themefic Plugin Review Admin Notice Script -->
 			<script>
 				jQuery(document).ready(function ($) {
-					$(document).on('click', '.already_done, .later, .never', function (event) {
+					$(document).on('click', '.already_done, .later, .never, .notice-dismiss', function (event) {
 						event.preventDefault();
 						var $this = $(this);
 						var status = $this.attr('data-status');
@@ -416,7 +423,6 @@ if ( ! function_exists( 'uacf7_review_notice' ) ) {
 							type: 'post',
 							data: data,
 							success: function (data) {
-								;
 							},
 							error: function (data) {
 							}

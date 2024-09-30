@@ -1,4 +1,7 @@
 <?php 
+/**
+ * @phpcs:disable WordPress.Security.NonceVerification.Recommended
+ */
 	$pages = get_posts( array('post_type' => 'page', 'posts_per_page' => -1 ) );
 	$redirect_options = get_post_meta($form_id,'extcf7_redirect_options',true);
 	$redirection_enable = $redirect_options && is_array($redirect_options) ? $redirect_options['redirection_enable'] : 'off';
@@ -48,7 +51,7 @@
 			<tr class="extcf7-custom-page-url extcf7-redirect-fields">
 				<th scope="row"><?php echo esc_html__('Custom URL','cf7-extensions');?></th>
 				<td>
-					<input type="text" class="regular-text" name="redirect_options[custom_urle]" value="<?php echo $custom_urle; ?>">
+					<input type="text" class="regular-text" name="redirect_options[custom_urle]" value="<?php echo esc_attr($custom_urle); ?>">
 					<p style="width: 750px;"><?php echo esc_html__('Insert a custom URL, if you want to add form field values as parameters in the custom redirection URL that you will insert here, just by adding the form field shortcodes to the URL. e.g. "https://example.com/?name=[you-name]"','cf7-extensions'); ?></p>
 				</td>
 			</tr>
@@ -95,6 +98,6 @@
 		<a href="<?php echo esc_url($link); ?>"><?php echo esc_html__('Go To Redirection Setting','cf7-extensions'); ?></a>
 	</div>
 	<script type="text/javascript">
-		var extcf7_redirect_settings = <?php echo isset($redirect_options) && !empty($redirect_options) ? json_encode($redirect_options) : '""'; ?>;
+		var extcf7_redirect_settings = <?php echo isset($redirect_options) && !empty($redirect_options) ? wp_json_encode($redirect_options) : '""'; ?>;
 	</script>
 </div>

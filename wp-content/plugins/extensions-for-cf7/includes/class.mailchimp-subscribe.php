@@ -189,7 +189,10 @@ class Extensions_Cf7_Pro_Mailchimp_Subscribe{
     $array = array();
     foreach ($input_fields as $value) {
         if ( !array_key_exists($column_required, $value) ) {
-          trigger_error(sprintf( __( 'Key "%s" does not exist in array', 'cf7-extensions' ), $column_required ));
+          /*
+          * translators: %s: required column name
+          */
+          trigger_error(sprintf( esc_html__( 'Key "%s" does not exist in array', 'cf7-extensions' ), esc_html($column_required) ));
             return false;
         }
         if (is_null($merge_id)) {
@@ -197,11 +200,17 @@ class Extensions_Cf7_Pro_Mailchimp_Subscribe{
         }
         else {
             if ( !array_key_exists($merge_id, $value)) {
-                trigger_error(sprintf( __( 'Key "%s" does not exist in array', 'cf7-extensions' ), $merge_id ));
+                /*
+                * translators: %s: array key
+                */
+                trigger_error(sprintf( esc_html__( 'Key "%s" does not exist in array', 'cf7-extensions' ), esc_html($merge_id) ));
                 return false;
             }
             if ( ! is_scalar($value[$merge_id])) {
-                trigger_error(sprintf( __( 'Key "%s" does not contain scalar value', 'cf7-extensions' ), $merge_id ));
+                /*
+                * translators: %s: array key
+                */
+                trigger_error(sprintf( esc_html__( 'Key "%s" does not contain scalar value', 'cf7-extensions' ), esc_html($merge_id) ));
                 return false;
             }
             $array[$value[$merge_id]] = $value[$column_required];

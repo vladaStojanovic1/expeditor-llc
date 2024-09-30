@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+ */
 if( ! defined( 'ABSPATH' ) ) exit(); // Exit if accessed directly
 
 /**
@@ -45,7 +47,7 @@ class Extensions_Cf7_Conditional {
         else if (function_exists('wpcf7_add_shortcode')) {
             wpcf7_add_shortcode('fields_group', array($this, 'extcf7_shortcode_handler'), true);
         }else{
-            throw new Exception(__('functions wpcf7_add_form_tag and wpcf7_add_shortcode not found.', 'cf7-extensions'));
+            throw new Exception(esc_html__('functions wpcf7_add_form_tag and wpcf7_add_shortcode not found.', 'cf7-extensions'));
         }
     }
 

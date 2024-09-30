@@ -1,4 +1,7 @@
 <?php
+/**
+ * @phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+ */
 
 if( ! defined( 'ABSPATH' ) ) exit(); // Exit if accessed directly
 
@@ -93,10 +96,10 @@ class Extensions_Cf7_list extends WP_List_Table
         if( $search && $form_date && $to_date ){
             $results = $wpdb->get_results( 
                 $wpdb->prepare("SELECT * FROM $table_name 
-                    WHERE form_date BETWEEN '%s' 
-                    AND '%s' 
+                    WHERE form_date BETWEEN %s
+                    AND %s 
                     AND form_value LIKE %s
-                    AND form_id = '%d'
+                    AND form_id = %d
                     ORDER BY $cf7_orderby $cf7_order
                     LIMIT $start,100", 
                     $form_date, 
@@ -111,7 +114,7 @@ class Extensions_Cf7_list extends WP_List_Table
             $results = $wpdb->get_results( 
                 $wpdb->prepare("SELECT * FROM $table_name 
                     WHERE  form_value LIKE %s
-                    AND form_id = '%d'
+                    AND form_id = %d
                     ORDER BY $cf7_orderby $cf7_order
                     LIMIT $start,100",
                     '%'.$wpdb->esc_like($search).'%',
@@ -122,9 +125,9 @@ class Extensions_Cf7_list extends WP_List_Table
         }else if( $form_date && $to_date ){
             $results = $wpdb->get_results( 
                 $wpdb->prepare( "SELECT * FROM $table_name 
-                    WHERE  form_date BETWEEN '%s' 
-                    AND '%s'
-                    AND form_id = '%d'
+                    WHERE  form_date BETWEEN %s
+                    AND %s
+                    AND form_id = %d
                     ORDER BY $cf7_orderby $cf7_order
                     LIMIT $start,100",
                     $form_date,
@@ -226,7 +229,7 @@ class Extensions_Cf7_list extends WP_List_Table
 		foreach ( $views as $class => $view ) {
 			$views[ $class ] = "\t<li class='".esc_attr($class)."'>$view";
 		}
-		echo implode( " |</li>\n", $views ) . "</li>\n";
+		echo implode( " |</li>\n", $views ) . "</li>\n"; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		echo '</ul>';
 	}
 
@@ -399,21 +402,21 @@ class Extensions_Cf7_list extends WP_List_Table
         if ( ! empty($search) && !empty($from_date) && !empty($to_date)) {
 
             $totalIemails = $wpdb->get_var( 
-                $wpdb->prepare("SELECT COUNT(*) FROM $table_name WHERE form_date BETWEEN '%s' AND '%s' AND form_value LIKE %s AND form_id = '%d' ", $from_date, $to_date, '%' . $wpdb->esc_like($search) . '%', $cf7_post_id, )
+                $wpdb->prepare("SELECT COUNT(*) FROM $table_name WHERE form_date BETWEEN %s AND %s AND form_value LIKE %s AND form_id = %d ", $from_date, $to_date, '%' . $wpdb->esc_like($search) . '%', $cf7_post_id, )
             );
 
         }else if(! empty($search)){
             $totalIemails  = $wpdb->get_var(
-                $wpdb->prepare("SELECT COUNT(*) FROM $table_name WHERE form_value LIKE %s AND form_id = '%d' ",'%' . $wpdb->esc_like($search) . '%', $cf7_post_id )
+                $wpdb->prepare("SELECT COUNT(*) FROM $table_name WHERE form_value LIKE %s AND form_id = %d ",'%' . $wpdb->esc_like($search) . '%', $cf7_post_id )
             );
         }else if(! empty($from_date) && ! empty($to_date)){
             $totalIemails  = $wpdb->get_var(
-                $wpdb->prepare("SELECT COUNT(*) FROM $table_name WHERE form_date BETWEEN '%s' AND '%s' AND form_id = '%d' ", $from_date,$to_date, $cf7_post_id )
+                $wpdb->prepare("SELECT COUNT(*) FROM $table_name WHERE form_date BETWEEN %s AND %s AND form_id = %d ", $from_date,$to_date, $cf7_post_id )
             );
         }else{
 
             if( $cf7_post_id !== null ){
-                $totalIemails  = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $table_name WHERE form_id = '%d'", $cf7_post_id));
+                $totalIemails  = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $table_name WHERE form_id = %d", $cf7_post_id));
             } else {
                 $totalIemails  = $wpdb->get_var( $wpdb->prepare("SELECT COUNT(*) FROM %s", $table_name) );
             }
@@ -457,7 +460,7 @@ class Extensions_Cf7_list extends WP_List_Table
         if( 'delete' === $action ) {
             foreach ($form_ids as $form_id):
                 $form_id         = $form_id;
-                $delete_row      = $wpdb->get_results( $wpdb->prepare("SELECT * FROM $table_name WHERE id = '%d' LIMIT 1", $form_id ), OBJECT );
+                $delete_row      = $wpdb->get_results( $wpdb->prepare("SELECT * FROM $table_name WHERE id = %d LIMIT 1", $form_id ), OBJECT );
                 $del_row_value   = $delete_row[0]->form_value;
                 $del_row_values  = unserialize($del_row_value);
                 $cf7_upload_dir  = wp_upload_dir();
@@ -467,7 +470,7 @@ class Extensions_Cf7_list extends WP_List_Table
 
                     if ( ( strpos($key, 'file') !== false ) &&
                         file_exists($cfdb7_dirname.'/'.$result) ) {
-                        unlink($cfdb7_dirname.'/'.$result);
+                        wp_delete_file($cfdb7_dirname.'/'.$result);
                     }
 
                 }
@@ -524,7 +527,7 @@ class Extensions_Cf7_list extends WP_List_Table
         if ( empty( $this->_actions ) )
             return;
 
-        echo '<select name="action' . $bulk_action_position . '">';
+        echo '<select name="action' . esc_attr($bulk_action_position) . '">';
         echo '<option value="-1">' . esc_html__( 'Bulk Actions', 'cf7-extensions' ) . "</option>";
         foreach ( $this->_actions as $name => $title ) {
             echo '<option value="' . esc_attr( $name ) . '">' . esc_html( $title ) . "</option>";

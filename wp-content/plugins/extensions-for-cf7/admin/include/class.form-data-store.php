@@ -24,7 +24,7 @@ class Extensions_Cf7_Store_Data
             $cf7_uploaded_files     = array();
             $posted_fields_value    = array();
 
-            foreach ($_FILES as $file_key => $file) {
+            foreach ($_FILES as $file_key => $file) { //phpcs:ignore WordPress.Security.NonceVerification.Missing	
                 array_push($cf7_uploaded_files, $file_key);
             }
 
@@ -71,7 +71,7 @@ class Extensions_Cf7_Store_Data
 
             $table_name = $wpdb->prefix . 'extcf7_db';
 
-            $wpdb->insert( $table_name, $data );
+            $wpdb->insert( $table_name, $data ); //phpcs:ignore WordPress.DB.DirectDatabaseQuery.DirectQuery
         }
     }
 }

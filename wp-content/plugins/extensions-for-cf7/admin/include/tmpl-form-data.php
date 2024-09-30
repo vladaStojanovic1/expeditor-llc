@@ -1,4 +1,7 @@
 <?php
+/**
+ * @phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+ */
     global $wpdb;
     $entry_id   = !empty($_REQUEST['entry_id']) ? sanitize_text_field($_REQUEST['entry_id']) : 0;
     $form_id    = !empty($_REQUEST['form_id']) ? sanitize_text_field($_REQUEST['form_id']) : 0;
@@ -9,7 +12,7 @@
     $cf7_upload_dir 	= wp_upload_dir();
     $cfdb7_dirname  	= $cf7_upload_dir['baseurl'].'/extcf7_uploads';
 
-    $mail_form_data = $wpdb->get_results( $wpdb->prepare("SELECT * FROM $table_name WHERE id = '%d' LIMIT 1", $mail_form_id ), OBJECT );
+    $mail_form_data = $wpdb->get_results( $wpdb->prepare("SELECT * FROM $table_name WHERE id = %d LIMIT 1", $mail_form_id ), OBJECT );
 
     if( !$mail_form_data ){
         echo "<span>".esc_html__('No data found!','cf7-extensions')."</span>";
@@ -22,7 +25,7 @@
     <tbody>
         <tr>
             <th><?php echo esc_html__('Date :','cf7-extensions'); ?></th>
-            <td><?php echo date_format(date_create($mail_form_data[0]->form_date),"F j, Y, g:i a"); ?></td>
+            <td><?php echo esc_html(date_format(date_create($mail_form_data[0]->form_date),"F j, Y, g:i a")); ?></td>
         </tr>
         <?php $form_data  = unserialize( $mail_form_data[0]->form_value );
         foreach ($form_data as $key => $data):
@@ -42,13 +45,13 @@
                     $key_value = ucwords( $key_value );
                     $array_data =  implode(', ',$data);
                     $array_data =  esc_html( $array_data );
-                    echo '<tr><th>'.esc_html($key_value).' :</th><td>'.nl2br($array_data).'</td></tr>';
+                    echo '<tr><th>'.esc_html($key_value).' :</th><td>'.nl2br(wp_kses_post($array_data)).'</td></tr>';
                 }else{
                     $key_value = str_replace('your-', '', $key);
                     $key_value = str_replace( array('-','_'), ' ', $key_value);
                     $key_value = ucwords( $key_value );
                     $data    = esc_html( $data );
-                    echo '<tr><th>'.esc_html($key_value).' :</th><td>'.nl2br($data).'</td></tr>';
+                    echo '<tr><th>'.esc_html($key_value).' :</th><td>'.nl2br(wp_kses_post($data)).'</td></tr>';
                 }
             }
         endforeach;
@@ -82,7 +85,7 @@
                             }else{
                                 $ip_address = esc_html( $form_data['server_remote_addr'] );  
                             } 
-                            echo $ip_address ? $ip_address : esc_html__('Invalid Ip','cf7-extensions');
+                            echo $ip_address ? esc_html($ip_address) : esc_html__('Invalid Ip','cf7-extensions');
                         ?></td>
                     </tr>
                 <?php endif; ?>

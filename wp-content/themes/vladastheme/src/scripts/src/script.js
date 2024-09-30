@@ -151,7 +151,7 @@
 
         const swiperQuiz = new Swiper(".animeslide", {
             loop: true,
-            speed: 4000,
+            speed: 1000,
             centeredSlides: true,
             autoplay: {
                 delay: 5000,
@@ -168,7 +168,7 @@
 
         const homeSwiper = new Swiper(".home-swiper", {
             loop: true,
-            speed: 4000,
+            speed: 1000,
             centeredSlides: true,
             autoplay: {
                 delay: 5000,

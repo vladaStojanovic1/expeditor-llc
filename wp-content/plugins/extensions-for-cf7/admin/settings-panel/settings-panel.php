@@ -115,6 +115,7 @@ final class Base{
         }
 
         require_once HTCF7EXTOPT_INCLUDES . '/classes/Api.php';
+        require_once HTCF7EXTOPT_INCLUDES . '/classes/Extensions_Cf7_Trial.php';
     }
 
     /**

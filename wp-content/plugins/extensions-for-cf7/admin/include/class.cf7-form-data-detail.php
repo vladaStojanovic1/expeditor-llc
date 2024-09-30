@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing, WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+ */
 if( ! defined( 'ABSPATH' ) ) exit(); // Exit if accessed directly
 
 /**
@@ -42,7 +44,7 @@ class Extensions_Cf7_Detail_Page implements Extensions_Cf7_Form_Datalist_Render
 
             $delete_row = $wpdb->get_results( 
                 $wpdb->prepare(
-                    "SELECT * FROM $table_name WHERE id = '%d' LIMIT 1",
+                    "SELECT * FROM $table_name WHERE id = %d LIMIT 1",
                     $mail_form_id
                 ),
                 OBJECT 
@@ -54,7 +56,7 @@ class Extensions_Cf7_Detail_Page implements Extensions_Cf7_Form_Datalist_Render
 
                 if ( ( strpos($key, 'file') !== false ) &&
                     file_exists($cfdb7_dirname.'/'.$result) ) {
-                    unlink($cfdb7_dirname.'/'.$result);
+                    wp_delete_file($cfdb7_dirname.'/'.$result);
                 }
 
             }
@@ -67,7 +69,7 @@ class Extensions_Cf7_Detail_Page implements Extensions_Cf7_Form_Datalist_Render
 
         $mail_form_data = $wpdb->get_results( 
             $wpdb->prepare(
-                "SELECT * FROM $table_name WHERE form_id = '%d' AND id = '%d' LIMIT 1",
+                "SELECT * FROM $table_name WHERE form_id = %d AND id = %d LIMIT 1",
                 $current_form_id,
                 $mail_form_id
             ), 
@@ -76,7 +78,7 @@ class Extensions_Cf7_Detail_Page implements Extensions_Cf7_Form_Datalist_Render
         
 
         if ( empty($mail_form_data) ) {
-            wp_die( $message = __('Not valid contact form', 'cf7-extensions') );
+            wp_die( esc_html__('Not valid contact form', 'cf7-extensions') );
         }
 
 
@@ -88,7 +90,7 @@ class Extensions_Cf7_Detail_Page implements Extensions_Cf7_Form_Datalist_Render
                 <tbody>
                     <tr>
                         <th><?php echo esc_html('Date :') ?></th>
-                        <td><?php echo date_format(date_create($mail_form_data[0]->form_date),"F j, Y, g:i a"); ?></td>
+                        <td><?php echo esc_html(date_format(date_create($mail_form_data[0]->form_date),"F j, Y, g:i a")); ?></td>
                     </tr>
                     <?php $form_data  = unserialize( $mail_form_data[0]->form_value );
                     foreach ($form_data as $key => $data):
@@ -99,7 +101,7 @@ class Extensions_Cf7_Detail_Page implements Extensions_Cf7_Form_Datalist_Render
                             $key_value = str_replace('your-', '', $key);
                             $key_value = str_replace( array('-','_'), ' ', $key_value);
                             $key_value = ucwords( $key_value );
-                            echo '<tr><th>'.esc_html__('Attachment :','cf7-extensions').'</th> <td><a href="'.esc_url( $cfdb7_dirname.'/'.$data ).'">'.$data.'</a></td></tr>';
+                            echo '<tr><th>'.esc_html__('Attachment :','cf7-extensions').'</th> <td><a href="'.esc_url( $cfdb7_dirname.'/'.$data ).'">'.wp_kses_post($data).'</a></td></tr>';
                         }else{
                             if(is_array($data)){
                                 $key_value = str_replace('your-', '', $key);
@@ -107,13 +109,13 @@ class Extensions_Cf7_Detail_Page implements Extensions_Cf7_Form_Datalist_Render
                                 $key_value = ucwords( $key_value );
                                 $array_data =  implode(', ',$data);
                                 $array_data =  esc_html( $array_data );
-                                echo '<tr><th>'.esc_html($key_value).' :</th><td>'.nl2br($array_data).'</td></tr>';
+                                echo '<tr><th>'.esc_html($key_value).' :</th><td>'.nl2br(wp_kses_post($array_data)).'</td></tr>';
                             }else{
                                 $key_value = str_replace('your-', '', $key);
                                 $key_value = str_replace( array('-','_'), ' ', $key_value);
                                 $key_value = ucwords( $key_value );
                                 $data    = esc_html( $data );
-                                echo '<tr><th>'.esc_html($key_value).' :</th><td>'.nl2br($data).'</td></tr>';
+                                echo '<tr><th>'.esc_html($key_value).' :</th><td>'.nl2br(wp_kses_post($data)).'</td></tr>';
                             }
                         }
                     endforeach;
@@ -148,7 +150,7 @@ class Extensions_Cf7_Detail_Page implements Extensions_Cf7_Form_Datalist_Render
                                         }else{
                                            $ip_address = esc_html( $form_data['server_remote_addr'] );  
                                         } 
-                                        echo $ip_address ? $ip_address : esc_html__('Invalid Ip','cf7-extensions');
+                                        echo $ip_address ? esc_html($ip_address) : esc_html__('Invalid Ip','cf7-extensions');
                                     ?></td>
                                 </tr>
                             <?php endif; ?>

@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+ */
 if( ! defined( 'ABSPATH' ) ) exit(); // Exit if accessed directly
 
 /**
@@ -97,7 +99,7 @@ class Extensions_Cf7_Mailchimp_Map{
 
             $chimp ['list_mail'] = $this->mailchimp_html_listmail( $apivalid, $listdata);
         
-            echo json_encode( $chimp );
+            echo wp_json_encode( $chimp );
             die();
         }
     }
@@ -334,7 +336,7 @@ class Extensions_Cf7_Mailchimp_Map{
     	$custom_vlaue = ( ( $formfield =='email' && $custom_value == ' ' )  ? '[your-email]':$custom_value );
     	?>
             <?php if ( $formfield != 'email'  ): ?>
-    		<select class="extcf7-mailchimp-select" id="extcf7-mailchimp-<?php echo esc_attr( $formtype );?>" name="<?php echo $formname; ?>" style="width: 95%;">
+    		<select class="extcf7-mailchimp-select" id="extcf7-mailchimp-<?php echo esc_attr( $formtype );?>" name="<?php echo esc_attr($formname); ?>" style="width: 95%;">
     			<option <?php  if ( $custom_value == ' ' ) { echo 'selected="selected"'; } ?> disabled>
                      <?php echo (($custom_value=='email') ? esc_html__( 'Required by MailChimp','cf7-extensions') : esc_html__( 'Choose','cf7-extensions' )); ?>
     			</option>

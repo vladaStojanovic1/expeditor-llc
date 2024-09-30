@@ -76,6 +76,9 @@ class Menu {
                 "reffer_link_enable" => htcf7ext_get_option('htcf7ext_opt', 'reffer_link_enable', 'on'),
             ],
             "htcf7ext_opt_extensions" => [
+                "redirection_extension" => htcf7ext_get_module_option( 'htcf7ext_redirection_extension_module_settings', 'redirection_extension', 'redirection_enable', 'on' ),
+                "conditional_field" => htcf7ext_get_module_option( 'htcf7ext_conditional_field_module_settings', 'conditional_field', 'conditional_field_enable', 'on' ),
+                "column_extension" => htcf7ext_get_option('htcf7ext_opt_extensions', 'column_extension', 'off'),
                 "mailchimp_extension" => htcf7ext_get_option('htcf7ext_opt_extensions', 'mailchimp_extension', 'on'),
                 "popup_extension" => 'off',
                 "repeater_field_extensions" => 'off',
@@ -170,7 +173,7 @@ class Menu {
     public function plugin_page() {
         ob_start();
 		include_once HTCF7EXTOPT_INCLUDES .'/templates/settings-page.php';
-		echo ob_get_clean();
+		echo ob_get_clean(); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
     }
 
 }

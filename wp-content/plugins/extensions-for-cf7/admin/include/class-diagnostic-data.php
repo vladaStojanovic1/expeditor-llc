@@ -161,7 +161,7 @@ if ( ! class_exists( 'Extensions_Cf7_Diagnostic_Data' ) ) {
          */
         private function process_data() {
 
-            $nonce = isset( $_POST['nonce'] ) ? $_POST['nonce'] : '';
+            $nonce = isset( $_POST['nonce'] ) ? $_POST['nonce'] : ''; //phpcs:ignore WordPress.Security.NonceVerification.Missing
 
             if ( ! wp_verify_nonce( $nonce, 'ht_cf7extensions_diagnostic_data_nonce' ) ) {
                 $errormessage = array(
@@ -483,8 +483,18 @@ if ( ! class_exists( 'Extensions_Cf7_Diagnostic_Data' ) ) {
          * Show core notice.
          */
         private function show_core_notice() {
+            /*
+            * translators: %1$s: project name
+            * translators: %2$s: strong start tag
+            * translators: %3$s: strong end tag
+            * translators: %4$s: a tag start
+            * translators: %5$s: a tag end
+            */
             $message_l1 = sprintf( esc_html__( 'At %2$s%1$s%3$s, we prioritize continuous improvement and compatibility. To achieve this, we gather non-sensitive diagnostic information and details about plugin usage. This includes your site\'s URL, the versions of WordPress and PHP you\'re using, and a list of your installed plugins and themes. We also require your email address to provide you with exclusive discount coupons and updates. This data collection is crucial for ensuring that %2$s%1$s%3$s remains up-to-date and compatible with the most widely-used plugins and themes. Rest assured, your privacy is our priority – no spam, guaranteed. %4$sPrivacy Policy%5$s', 'cf7-extensions' ), esc_html( $this->project_name ), '<strong>', '</strong>', '<a target="_blank" href="' . esc_url( $this->privacy_policy ) . '">', '</a>', '<h4 class="ht_cf7extensions-diagnostic-data-title">', '</h4>' );
-
+/*
+            * translators: %1$s: a tag start
+            * translators: %2$s: a tag end
+            */
             $message_l2 = sprintf( esc_html__( 'Server information (Web server, PHP version, MySQL version), WordPress information, site name, site URL, number of plugins, number of users, your name, and email address. You can rest assured that no sensitive data will be collected or tracked. %1$sLearn more%2$s.', 'cf7-extensions' ), '<a target="_blank" href="' . esc_url( $this->privacy_policy ) . '">', '</a>' );
 
             $button_text_1 = esc_html__( 'Count Me In', 'cf7-extensions' );
@@ -495,7 +505,10 @@ if ( ! class_exists( 'Extensions_Cf7_Diagnostic_Data' ) ) {
             ?>
             <div class="ht_cf7extensions-diagnostic-data-style"><style>.ht_cf7extensions-diagnostic-data-notice,.woocommerce-embed-page .ht_cf7extensions-diagnostic-data-notice{padding-top:.75em;padding-bottom:.75em;}.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-buttons,.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-list,.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-message{padding:.25em 2px;margin:0;}.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-list{display:none;color:#646970;}.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-buttons{padding-top:.75em;}.ht_cf7extensions-diagnostic-data-notice .ht_cf7extensions-diagnostic-data-buttons .button{margin-right:5px;box-shadow:none;}.ht_cf7extensions-diagnostic-data-loading{position:relative;}.ht_cf7extensions-diagnostic-data-loading::before{position:absolute;content:"";width:100%;height:100%;top:0;left:0;background-color:rgba(255,255,255,.5);z-index:999;}.ht_cf7extensions-diagnostic-data-disagree{border-width:0px !important;background-color: transparent!important; padding: 0!important;}h4.ht_cf7extensions-diagnostic-data-title {margin: 0 0 10px 0;font-size: 1.04em;font-weight: 600;}</style></div>
             <div class="ht_cf7extensions-diagnostic-data-notice notice notice-success">
-                <h4 class="ht_cf7extensions-diagnostic-data-title"><?php echo sprintf( esc_html__('🌟 Enhance Your %1$s Experience as a Valued Contributor!','cf7-extensions'), esc_html( $this->project_name )); ?></h4>
+                <h4 class="ht_cf7extensions-diagnostic-data-title"><?php
+                /* translators: %1$s: project name */
+                echo sprintf( esc_html__('🌟 Enhance Your %1$s Experience as a Valued Contributor!','cf7-extensions'), esc_html( $this->project_name ));
+                ?></h4>
                 <p class="ht_cf7extensions-diagnostic-data-message"><?php echo wp_kses_post( $message_l1 ); ?></p>
                 <p class="ht_cf7extensions-diagnostic-data-list"><?php echo wp_kses_post( $message_l2 ); ?></p>
                 <p class="ht_cf7extensions-diagnostic-data-buttons">
@@ -503,7 +516,7 @@ if ( ! class_exists( 'Extensions_Cf7_Diagnostic_Data' ) ) {
                     <a href="<?php echo esc_url( $button_link_2 ); ?>" class="ht_cf7extensions-diagnostic-data-button ht_cf7extensions-diagnostic-data-disagree button button-secondary"><?php echo esc_html( $button_text_2 ); ?></a>
                 </p>
             </div>
-            <div class="ht_cf7extensions-diagnostic-data-script"><script type="text/javascript">;(function($){"use strict";function ht_cf7extensionsDissmissThanksNotice(noticeWrap){$('.ht_cf7extensions-diagnostic-data-thanks .notice-dismiss').on('click',function(e){e.preventDefault();let thisButton=$(this),noticeWrap=thisButton.closest('.ht_cf7extensions-diagnostic-data-thanks');noticeWrap.fadeTo(100,0,function(){noticeWrap.slideUp(100,function(){noticeWrap.remove()})})})};$(".ht_cf7extensions-diagnostic-data-list-toogle").on("click",function(e){e.preventDefault();$(this).parents(".ht_cf7extensions-diagnostic-data-notice").find(".ht_cf7extensions-diagnostic-data-list").slideToggle("fast")});$(".ht_cf7extensions-diagnostic-data-button").on("click",function(e){e.preventDefault();let thisButton=$(this),noticeWrap=thisButton.closest(".ht_cf7extensions-diagnostic-data-notice"),agreed=thisButton.hasClass("ht_cf7extensions-diagnostic-data-agree")?"yes":"no",styleWrap=$(".ht_cf7extensions-diagnostic-data-style"),scriptWrap=$(".ht_cf7extensions-diagnostic-data-script");$.ajax({type:"POST",url:ajaxurl,data:{action:"ht_cf7extensions_diagnostic_data",agreed:agreed,nonce:'<?php echo wp_create_nonce( 'ht_cf7extensions_diagnostic_data_nonce' );?>'},beforeSend:function(){noticeWrap.addClass("ht_cf7extensions-diagnostic-data-loading")},success:function(response){response="object"===typeof response?response:{};let success=response.hasOwnProperty("success")?response.success:"no",notice=response.hasOwnProperty("notice")?response.notice:"no",thanks_notice=response.hasOwnProperty("thanks_notice")?response.thanks_notice:"";if("yes"===success){noticeWrap.replaceWith(thanks_notice);styleWrap.remove();scriptWrap.remove()}else if("no"===notice){noticeWrap.remove();styleWrap.remove();scriptWrap.remove()};noticeWrap.removeClass("ht_cf7extensions-diagnostic-data-loading");ht_cf7extensionsDissmissThanksNotice()},error:function(){noticeWrap.removeClass("ht_cf7extensions-diagnostic-data-loading")},})})})(jQuery);</script></div>
+            <div class="ht_cf7extensions-diagnostic-data-script"><script type="text/javascript">;(function($){"use strict";function ht_cf7extensionsDissmissThanksNotice(noticeWrap){$('.ht_cf7extensions-diagnostic-data-thanks .notice-dismiss').on('click',function(e){e.preventDefault();let thisButton=$(this),noticeWrap=thisButton.closest('.ht_cf7extensions-diagnostic-data-thanks');noticeWrap.fadeTo(100,0,function(){noticeWrap.slideUp(100,function(){noticeWrap.remove()})})})};$(".ht_cf7extensions-diagnostic-data-list-toogle").on("click",function(e){e.preventDefault();$(this).parents(".ht_cf7extensions-diagnostic-data-notice").find(".ht_cf7extensions-diagnostic-data-list").slideToggle("fast")});$(".ht_cf7extensions-diagnostic-data-button").on("click",function(e){e.preventDefault();let thisButton=$(this),noticeWrap=thisButton.closest(".ht_cf7extensions-diagnostic-data-notice"),agreed=thisButton.hasClass("ht_cf7extensions-diagnostic-data-agree")?"yes":"no",styleWrap=$(".ht_cf7extensions-diagnostic-data-style"),scriptWrap=$(".ht_cf7extensions-diagnostic-data-script");$.ajax({type:"POST",url:ajaxurl,data:{action:"ht_cf7extensions_diagnostic_data",agreed:agreed,nonce:'<?php echo esc_attr(wp_create_nonce( 'ht_cf7extensions_diagnostic_data_nonce' ));?>'},beforeSend:function(){noticeWrap.addClass("ht_cf7extensions-diagnostic-data-loading")},success:function(response){response="object"===typeof response?response:{};let success=response.hasOwnProperty("success")?response.success:"no",notice=response.hasOwnProperty("notice")?response.notice:"no",thanks_notice=response.hasOwnProperty("thanks_notice")?response.thanks_notice:"";if("yes"===success){noticeWrap.replaceWith(thanks_notice);styleWrap.remove();scriptWrap.remove()}else if("no"===notice){noticeWrap.remove();styleWrap.remove();scriptWrap.remove()};noticeWrap.removeClass("ht_cf7extensions-diagnostic-data-loading");ht_cf7extensionsDissmissThanksNotice()},error:function(){noticeWrap.removeClass("ht_cf7extensions-diagnostic-data-loading")},})})})(jQuery);</script></div>
             <?php
         }
 
@@ -511,7 +524,15 @@ if ( ! class_exists( 'Extensions_Cf7_Diagnostic_Data' ) ) {
          * Get thanks notice.
          */
         private function get_thanks_notice() {
+            /*
+            * translators: %1$s: project name
+            * translators: %2$s: strong start tag
+            * translators: %3$s: strong end tag
+            */
             $message = sprintf( esc_html__( 'Thank you very much for supporting %2$s%1$s%3$s.', 'cf7-extensions' ), $this->project_name, '<strong>', '</strong>' );
+            /*
+            * translators: %1$s: Message content
+            */
             $notice = sprintf( '<div class="ht_cf7extensions-diagnostic-data-thanks notice notice-success is-dismissible"><p>%1$s</p><button type="button" class="notice-dismiss"><span class="screen-reader-text"></span></button></div>', wp_kses_post( $message ) );
 
             return $notice;

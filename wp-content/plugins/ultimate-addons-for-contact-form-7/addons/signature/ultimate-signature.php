@@ -27,8 +27,8 @@ class UACF7_SIGNATURE {
 
 	public function uacf7_signature_public_scripts() {
 
-		wp_enqueue_script( 'uacf7-signature-public-assets', UACF7_URL . '/addons/signature/assets/public/js/signature.js', [ 'jquery' ], 'UACF7_VERSION', true );
-		wp_enqueue_script( 'uacf7-sign-lib.min', UACF7_URL . '/addons/signature/assets/public/js/sign-lib.min.js', [ 'jquery' ], 'UACF7_VERSION', true );
+		wp_enqueue_script( 'uacf7-signature-public-assets', UACF7_URL . 'addons/signature/assets/public/js/signature.js', [ 'jquery' ], 'UACF7_VERSION', true );
+		wp_enqueue_script( 'uacf7-sign-lib.min', UACF7_URL . 'addons/signature/assets/public/js/sign-lib.min.js', [ 'jquery' ], 'UACF7_VERSION', true );
 
 
 		wp_localize_script( 'uacf7-signature-public-assets', 'uacf7_sign_obj', [ 
@@ -129,9 +129,14 @@ class UACF7_SIGNATURE {
 	/** Add Signature Shortcode */
 
 	public function uacf7_signature_add_shortcodes() {
-		wpcf7_add_form_tag( array( 'uacf7_signature', 'uacf7_signature*' ),
-			array( $this, 'uacf7_signature_tag_handler_callback' ), array( 'name-attr' => true,
-				'file-uploading' => true ) );
+		wpcf7_add_form_tag(
+			array( 'uacf7_signature', 'uacf7_signature*' ),
+			array( $this, 'uacf7_signature_tag_handler_callback' ),
+			array(
+				'name-attr' => true,
+				'file-uploading' => true
+			)
+		);
 	}
 
 	public function uacf7_signature_tag_handler_callback( $tag ) {
@@ -190,7 +195,8 @@ class UACF7_SIGNATURE {
 					height="<?php echo $canvas_height; ?>"></canvas>
 			</div>
 			<div class="control_div">
-				<button data-field-name="<?php echo sanitize_html_class( $tag->name ); ?>" class="clear-button">Clear</button>
+				<button data-field-name="<?php echo sanitize_html_class( $tag->name ); ?>"
+					class="clear-button"><?php _e( 'Clear', 'ultimate-addons-cf7' ); ?></button>
 			</div>
 
 		</span>
@@ -208,7 +214,8 @@ class UACF7_SIGNATURE {
 		if ( ! function_exists( 'wpcf7_add_tag_generator' ) ) {
 			return;
 		}
-		wpcf7_add_tag_generator( 'uacf7_signature',
+		wpcf7_add_tag_generator(
+			'uacf7_signature',
 			__( 'Signature', 'ultimate-addons-cf7' ),
 			'uacf7-tg-pane-signature',
 			array( $this, 'tg_pane_signature' )

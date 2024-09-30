@@ -1,5 +1,7 @@
 <?php
-
+/**
+ * @phpcs:disable WordPress.Security.NonceVerification.Recommended, WordPress.Security.NonceVerification.Missing
+ */
 if( ! defined( 'ABSPATH' ) ) exit(); // Exit if accessed directly
 
 /**
@@ -86,7 +88,7 @@ class Extensions_Cf7_Redirection{
         );
 
         return array_merge($hidden_fields, array(
-            '_extcf7_redirect_options' => ''.json_encode($options),
+            '_extcf7_redirect_options' => ''.wp_json_encode($options),
         ));
     }
 

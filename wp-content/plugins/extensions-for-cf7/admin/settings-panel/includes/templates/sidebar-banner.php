@@ -22,4 +22,4 @@ ob_start();
         <a href="https://hasthemes.com/contact-us/" class="button htcf7ext-opt-support-btn" target="_blank"><?php esc_html_e('Get Support','cf7-extensions');?></a>
     </div>
 </div>
-<?php echo apply_filters('htcf7ext_sidebar_adds_banner', ob_get_clean() ); ?>
+<?php echo wp_kses_post(apply_filters('htcf7ext_sidebar_adds_banner', ob_get_clean() )); ?>

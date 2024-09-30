@@ -12,14 +12,14 @@
 			<div class="extcf7-if">
                 <span class="extcf7-show-label"><?php echo esc_html__( 'Show', 'cf7-extensions' ); ?></span>
                 <select class="extcf7-then-field">
-                	<?php echo $this->extcf7_all_group_options($form); ?>
+                	<?php echo $this->extcf7_all_group_options($form); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                 </select>
             </div>
 			<div class="extcf7-and-rules-container">
 				<div class="extcf7-and-rule">
                     <span class="extcf7-if-txt-label"></span>
                     <select class="extcf7-if-field-select">
-                    	<?php echo $this->extcf7_all_field_options($form); ?>
+                    	<?php echo $this->extcf7_all_field_options($form); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
                     </select>
                     <select class="extcf7-condition-operator_input">
                     	<option value="equal"><?php echo esc_html__('equal','cf7-extensions'); ?></option>
@@ -43,7 +43,7 @@
 	<div id="extcf7-text-entries">
         <div id="extcf7-settings-text-wrap">
             <textarea id="extcf7-settings-text" name="extcf7-settings-text"><?php 
-            echo Extensions_Cf7_Condition_Setup::serialize_conditions_value($extcf7_entries); 
+            echo Extensions_Cf7_Condition_Setup::serialize_conditions_value($extcf7_entries);  //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
             ?></textarea>
             <br>
         </div>

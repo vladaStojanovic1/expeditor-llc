@@ -1,7 +1,10 @@
 (function ($) {
     $(function () {
         // Add Color Picker to all inputs that have 'color-field' class
-        $('.uacf7-color-picker').wpColorPicker();
+        // $('.tf-color').wpColorPicker();
+        if (typeof $.fn.wpColorPicker !== 'undefined') {
+            $('.uacf7-color-picker').wpColorPicker();
+        }
     });
 
     $(document).ready(function () {
@@ -37,71 +40,77 @@
             }
         }
 
-        // Import and Export option 
-        const backupfields = $('#import_export').find('.tf-field-backup .tf-fieldset');
-        const exportArea = backupfields.find('.tf-export-field');
-        const exportButton = backupfields.find('.tf-export-button');
-        const copyIndicator = backupfields.find('#copyIndicator');
+        // Import and Export Option
+        function initializeImportExportFunctions() {
+            const backupfields = $('#import_export').find('.tf-field-backup .tf-fieldset');
+            const exportArea = backupfields.find('.tf-export-field');
+            const uACF7SettingExportButton = backupfields.find('.tf-export-button');
+            const copyIndicator = backupfields.find('#copyIndicator');
 
-        // Ensure the textarea is enabled
-        if (exportArea.is(':disabled')) {
-            exportArea.prop('disabled', false);
+            // Ensure the textarea is enabled
+            if (exportArea.is(':disabled')) {
+                exportArea.prop('disabled', false);
+            }
+
+            // Ensure when textarea gets hover showing copy text
+            exportArea.hover(function () {
+                copyIndicator.text('Click to copy');
+                copyIndicator.css({ 'display': 'block' });
+            }, function () {
+                copyIndicator.text('');
+                copyIndicator.css({ 'display': 'none' });
+            });
+
+            // Clean up existing click event handlers to avoid duplication
+            copyIndicator.hover(function () {
+                copyIndicator.text('Click to copy');
+                copyIndicator.css({ 'display': 'block' });
+            }, function () {
+                copyIndicator.text('');
+                copyIndicator.css({ 'display': 'none' });
+            });
+
+            copyIndicator.off('click');
+            copyIndicator.on('click', function (e) {
+                uacf7_backup_filed_copy(exportArea);
+            });
+
+            // Clean up existing click event handlers to avoid duplication
+            exportArea.off('click');
+            exportArea.on('click', function (event) {
+                event.preventDefault();
+                var textarea = $(this);
+
+                // Call the copyer function
+                uacf7_backup_filed_copy(textarea);
+
+                // Re-disable the textarea if necessary
+                textarea.prop('disabled', true);
+            });
+
+            // Clean up existing click event handlers to avoid duplication for Export button
+            uACF7SettingExportButton.off('click');
+            uACF7SettingExportButton.on('click', function (event) {
+                event.preventDefault();
+
+                var textarea = $('.tf-export-field');
+
+                // Call the copyer function
+                uacf7_backup_filed_copy(textarea);
+
+                // Re-disable the textarea if necessary
+                textarea.prop('disabled', true);
+            });
         }
 
-        // Ensure when textarea get hover showing copy text
-        exportArea.hover(function () {
-            copyIndicator.text('Click to copy');
-            copyIndicator.css({ 'display': 'block' });
-        }, function () {
-            copyIndicator.text('');
-            copyIndicator.css({ 'display': 'none' });
-        });
-
-        // Clean up existing click event handlers to avoid duplication
-        copyIndicator.hover(function () {
-            copyIndicator.text('Click to copy');
-            copyIndicator.css({ 'display': 'block' });
-        }, function () {
-            copyIndicator.text('');
-            copyIndicator.css({ 'display': 'none' });
-        });
-
-        copyIndicator.off('click');
-        copyIndicator.on('click', function (e) {
-            uacf7_backup_filed_copy(exportArea);
-        });
-
-        // Clean up existing click event handlers to avoid duplication
-        exportArea.off('click');
-        exportArea.on('click', function (event) {
-            event.preventDefault();
-            var textarea = $(this);
-
-            // Call the copyer function
-            uacf7_backup_filed_copy(textarea);
-
-            // Re-disable the textarea if necessary
-            textarea.prop('disabled', true);
-        });
-
-        // Clean up existing click event handlers to avoid duplication for Export button
-        exportButton.off('click');
-        exportButton.on('click', function (event) {
-            event.preventDefault();
-            var textarea = $('.tf-export-field');
-
-            // Call the copyer function
-            uacf7_backup_filed_copy(textarea);
-
-            // Re-disable the textarea if necessary
-            textarea.prop('disabled', true);
-        });
+        // Import and Export option 
+        initializeImportExportFunctions();
 
         // Clean up existing click event handlers to avoid duplication for Global Export button
         const globalbackup = $('#uacf7_import_export').find('.tf-field-backup .tf-fieldset');
-        const GlobalButton = globalbackup.find('.tf-export-button');
-        globalbackup.off('click');
-        globalbackup.on('click', function (event) {
+        const globalButton = globalbackup.find('.tf-export-button');
+        globalButton.off('click');
+        globalButton.on('click', function (event) {
             event.preventDefault();
             var textarea = $('.tf-export-field');
 
@@ -111,7 +120,6 @@
             // Re-disable the textarea if necessary
             textarea.prop('disabled', true);
         });
-
 
     });
 
@@ -181,17 +189,3 @@ function uacf7_progressbar_style() {
         jQuery('.step-title-description').hide();
     }
 }
-
-// ;(function ($) {
-//     'use strict';
-//     $ ( window ).ready(function() {
-//        $('.wpcf7-form').find('p').each( function(){
-//             var $this = $(this);
-//             console.log($this.html());
-//             var $html = $this.html();
-//             if($.trim($html) == '<br>'){
-//                 $this.remove();
-//             }
-//        })
-//     });
-// })(jQuery);

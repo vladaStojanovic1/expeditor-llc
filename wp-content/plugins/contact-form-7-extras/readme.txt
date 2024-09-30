@@ -1,10 +1,10 @@
-=== Controls for Contact Form 7 (Analytics & Tracking) ===
+=== Controls for Contact Form 7 (Redirects, Analytics & Tracking) ===
 
 Contributors: kasparsd, buzztone   
 Tags: Contact Form 7, cf7, forms, form, admin, backend, redirect, tracking, analytics, google analytics, facebook pixel, ga, simple, interface, dashboard, recaptcha   
 Requires at least: 4.6   
-Tested up to: 5.7
-Stable tag: 0.8.0   
+Tested up to: 6.5   
+Stable tag: 0.8.1   
 
 Simple controls, analytics, tracking and redirects for Contact Form 7.
 
@@ -80,7 +80,9 @@ The "[Storage for Contact Form 7](https://codecanyon.net/item/storage-for-contac
 
 == Screenshots ==
 
-1. Advanced Controls for Contact Form 7
+1. Google Analytics events associated with form submissions.
+2. Facebook Pixel "Contact" event associated with form submission.
+3. Controls for Contact Form 7 plugin settings.
 
 
 == Upgrade Notice ==

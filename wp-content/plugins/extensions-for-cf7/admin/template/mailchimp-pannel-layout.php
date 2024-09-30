@@ -19,7 +19,7 @@
 					<span class="dashicons dashicons-no"></span>
 					<span class="spinner"></span>
 				</span>
-				<input type="hidden" id="malichimp-formid" name="extcf7-mailchimp[malichimp_formid]" value="<?php echo $form->id(); ?>" style="width:0%;">
+				<input type="hidden" id="malichimp-formid" name="extcf7-mailchimp[malichimp_formid]" value="<?php echo esc_attr($form->id()); ?>" style="width:0%;">
 				<small class="extcf7-description need-api">
 					<span class="invalid-api-message"><?php esc_html_e('Invalid Api Key','cf7-extensions');?></span>
 					<p><?php esc_html_e('Don\'t know how to get a Mailchimp API key? Get it from', 'cf7-extensions');?> <a class="extcf7-mailchiml-api-link"  href="<?php echo esc_url('https://mailchimp.com/help/about-api-keys/'); ?>" target="_blank"><?php echo esc_html__('here','cf7-extensions') ?></a></p>
@@ -31,7 +31,7 @@
 				<?php if(isset($extcf7_mcmp['valid_api'])): ?>
 					<input type="hidden" id="ini-valid-api" name="extcf7-mailchimp[valid_api]" value="<?php echo esc_attr( $extcf7_mcmp['valid_api'] ) ; ?>" />
 					<div id="extcf7-listmail">
-						<?php echo $this->mailchimp_html_listmail($extcf7_mcmp['valid_api'],$extcf7_mcmp['lisdata']); ?>
+						<?php echo $this->mailchimp_html_listmail($extcf7_mcmp['valid_api'],$extcf7_mcmp['lisdata']); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
 					</div>
 				<?php else: ?>
 					<div id="extcf7-listmail"></div>
@@ -91,7 +91,7 @@
 										<label class="extcf7-mailchimp-label" ><strong><?php echo esc_html__('Select Mailchimp Field','cf7-extensions') ?></strong></label>
 						                <select name="extcf7-mailchimp[mailchimp-tag][]" style="width:95%;">
 						                    <?php foreach ( $extcf7_mcmp['listfields'] as $field ): ?>
-						                        <option value="<?php echo $field['name'] ?>" <?php  if ( $extcf7_mcmp['mailchimp-tag'][$i] == $field['name'] ) { echo 'selected="selected"'; } ?>><?php echo $field['label']; ?></option>
+						                        <option value="<?php echo esc_attr($field['name']) ?>" <?php  if ( $extcf7_mcmp['mailchimp-tag'][$i] == $field['name'] ) { echo 'selected="selected"'; } ?>><?php echo esc_html($field['label']); ?></option>
 						                    <?php endforeach; ?>
 						                </select>
 					            	</div>
@@ -141,7 +141,7 @@
 						<tr>
 							<th><?php esc_html_e('Required User Aacceptance','cf7-extensions');?></th>
 							<td>
-								<input type="text" name="extcf7-mailchimp[confirm-subs]" class="regular-text" value="<?php echo (isset($extcf7_mcmp['confirm-subs'])) ? $extcf7_mcmp['confirm-subs'] : '';?>">
+								<input type="text" name="extcf7-mailchimp[confirm-subs]" class="regular-text" value="<?php echo (isset($extcf7_mcmp['confirm-subs'])) ? esc_attr($extcf7_mcmp['confirm-subs']) : '';?>">
 								<div class="extcf7-tooptip-wraper">
 									<p><?php esc_html_e('- To create forms with user acceptability like','cf7-extensions');?> </p>
 									<div class="extcf7-tooltip-item">
@@ -178,6 +178,6 @@
 	</div>
 </div>
 <script type="text/javascript">
-	var init_valid_api = <?php echo isset($extcf7_mcmp['valid_api']) ? $extcf7_mcmp['valid_api'] : 0; ?>;
-	var custom_field_visible = <?php echo isset($extcf7_mcmp['chimp-customfield']) ? $extcf7_mcmp['chimp-customfield'] : '0'; ?>;
+	var init_valid_api = <?php echo isset($extcf7_mcmp['valid_api']) ? esc_js($extcf7_mcmp['valid_api']) : 0; ?>;
+	var custom_field_visible = <?php echo isset($extcf7_mcmp['chimp-customfield']) ? esc_js($extcf7_mcmp['chimp-customfield']) : '0'; ?>;
 </script>

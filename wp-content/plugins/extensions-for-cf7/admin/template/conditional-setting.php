@@ -29,14 +29,14 @@
 			<tr class="extcf7-animation-time">
 				<th scope="row"><?php echo esc_html__('Animation In Time','cf7-extensions');?></th>
 				<td>
-					<input type="text" class="regular-text" name="admimation_in_time" value="<?php echo $admimation_in_time; ?>">
+					<input type="text" class="regular-text" name="admimation_in_time" value="<?php echo esc_attr($admimation_in_time); ?>">
 					<p><?php echo esc_html__('Input a positive integer value for animation in time. The values in milliseconds and it will be applied for each field. Default Value:250','cf7-extensions'); ?></p>
 				</td>
 			</tr>
 			<tr class="extcf7-animation-time">
 				<th scope="row"><?php echo esc_html__('Animation Out Time','cf7-extensions');?></th>
 				<td>
-					<input type="text" class="regular-text" name="admimation_out_time" value="<?php echo $admimation_out_time; ?>">
+					<input type="text" class="regular-text" name="admimation_out_time" value="<?php echo esc_attr($admimation_out_time); ?>">
 					<p><?php echo esc_html__('Input a positive integer value for animation out time. The values in milliseconds and it will be applied for each field. Default Value:250','cf7-extensions'); ?></p>
 				</td>
 			</tr>

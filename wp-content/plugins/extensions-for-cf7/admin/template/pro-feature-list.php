@@ -58,7 +58,7 @@
         <div class="ext-cf7-option-banner-area">
             <div class="ext-cf7-option-banner-head">
                 <div class="ext-cf7-option-logo">
-                    <img src="<?php echo CF7_EXTENTIONS_PL_URL; ?>/admin//assets/images/cf7-tunmnail.jpg" alt="<?php echo esc_attr__( 'WooLentor', 'cf7-extensions' ); ?>">
+                    <img src="<?php echo esc_url(CF7_EXTENTIONS_PL_URL); ?>/admin/assets/images/cf7-tunmnail.jpg" alt="<?php echo esc_attr__( 'WooLentor', 'cf7-extensions' ); ?>">
                 </div>
                 <div class="ext-cf7-option-intro">
                     <p><?php echo wp_kses_post( __('Extensions for CF7 is a fantastic WordPress plugin that lets you extend the features of the Contact Form 7 plugin. Using this plugin, you can add conditional fields to your forms. That\'s not all, it also allows you to store the data for each form submission in a database while having the flexibility of redirecting the users anywhere you want after a successful submission. The pro version even comes with a lot more useful features to supercharge the forms by adding a lot of outstanding options. Some of them are listed below.', 'cf7-extensions') ); ?></p>
@@ -77,14 +77,14 @@
             <div class="ext-cf7-option-action-btn">
                 <a class="ext-cf7-option-btn" href="<?php echo esc_url( 'https://hasthemes.com/plugins/cf7-extensions/' ); ?>" target="_blank">
                     <span class="ext-cf7-option-btn-text"><?php echo esc_html__( 'Get Pro Now', 'cf7-extensions' ); ?></span>
-                    <span class="ext-cf7-option-btn-icon"><img src="<?php echo CF7_EXTENTIONS_PL_URL; ?>/admin/assets/images/icon/plus.png" alt="<?php echo esc_attr__( 'Get pro now', 'cf7-extensions' ); ?>"></span>
+                    <span class="ext-cf7-option-btn-icon"><img src="<?php echo esc_url(CF7_EXTENTIONS_PL_URL); ?>/admin/assets/images/icon/plus.png" alt="<?php echo esc_attr__( 'Get pro now', 'cf7-extensions' ); ?>"></span>
                 </a>
             </div>
         </div>
 
         <div class="ext-cf7-option-rating-area">
             <div class="ext-cf7-option-rating-icon">
-                <img src="<?php echo CF7_EXTENTIONS_PL_URL; ?>/admin/assets/images/icon/rating.png" alt="<?php echo esc_attr__( 'Rating icon', 'cf7-extensions' ); ?>">
+                <img src="<?php echo esc_url(CF7_EXTENTIONS_PL_URL); ?>/admin/assets/images/icon/rating.png" alt="<?php echo esc_attr__( 'Rating icon', 'cf7-extensions' ); ?>">
             </div>
             <div class="ext-cf7-option-rating-intro">
                 <?php echo esc_html__('If you’re loving how our product has helped your business, please let the WordPress community know by','cf7-extensions'); ?> <a target="_blank" href="https://wordpress.org/support/plugin/extensions-for-cf7/reviews/?filter=5#new-post"><?php echo esc_html__( 'leaving us a review on our WP repository', 'cf7-extensions' ); ?></a>. <?php echo esc_html__( 'Which will motivate us a lot.', 'cf7-extensions' ); ?>

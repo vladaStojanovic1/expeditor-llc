@@ -15,7 +15,7 @@ while ( $the_query->have_posts() ){
     $cf7_post_id = get_the_id();
     $title = get_the_title();
     $table_name = $wpdb->prefix . 'extcf7_db';
-    $total_email = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $table_name WHERE form_id = '%d' ",$cf7_post_id));
+    $total_email = $wpdb->get_var($wpdb->prepare("SELECT COUNT(*) FROM $table_name WHERE form_id = %d ",$cf7_post_id)); //phpcs:ignore WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
     $link  = "<a href=admin.php?page=contat-form-list&cf7_id=".esc_attr($cf7_post_id).">%s</a>";
     $cf7_value['id']  = $cf7_post_id;
     $cf7_value['name']  = $title;
@@ -47,4 +47,4 @@ ob_start();
         </tbody>
     </table>
 </div>
-<?php echo apply_filters('htcf7ext_dashboard_general', ob_get_clean() ); ?>
+<?php echo apply_filters('htcf7ext_dashboard_general', ob_get_clean() ); //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>

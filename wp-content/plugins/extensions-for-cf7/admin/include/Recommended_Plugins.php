@@ -66,7 +66,7 @@ class Recommended_Plugins {
         // Initialize properties
         $this->text_domain       =  !empty( $args['text_domain'] ) ? $args['text_domain'] : 'htrp';
         $this->parent_menu_slug  =  !empty( $args['parent_menu_slug'] ) ? $args['parent_menu_slug'] : 'plugins.php';
-        $this->menu_label        =  !empty( $args['menu_label'] ) ? $args['menu_label'] : esc_html__( 'Recommendations', $this->text_domain );
+        $this->menu_label        =  !empty( $args['menu_label'] ) ? $args['menu_label'] : esc_html__( 'Recommendations', 'cf7-extensions' );
         $this->menu_capability   =  !empty( $args['menu_capability'] ) ? $args['menu_capability'] : 'manage_options';
         $this->menu_page_slug    =  !empty( $args['menu_page_slug'] ) ? $args['menu_page_slug'] : $this->text_domain . '_extensions';
         $this->priority          =  !empty( $args['priority'] ) ? $args['priority'] : 100;
@@ -122,13 +122,13 @@ class Recommended_Plugins {
          */
         $localize_vars['ajaxurl'] = admin_url('admin-ajax.php');
         $localize_vars['nonce'] = wp_create_nonce('htrp_cf7_activation_nonce');
-        $localize_vars['text_domain'] = sanitize_title_with_dashes( $this->text_domain );
+        $localize_vars['text_domain'] = sanitize_title_with_dashes( 'cf7-extensions' );
         $localize_vars['buttontxt'] = array(
-            'buynow'     => esc_html__( 'Buy Now', $this->text_domain ),
-            'preview'    => esc_html__( 'Preview', $this->text_domain ),
-            'installing' => esc_html__( 'Installing..', $this->text_domain ),
-            'activating' => esc_html__( 'Activating..', $this->text_domain ),
-            'active'     => esc_html__( 'Activated', $this->text_domain ),
+            'buynow'     => esc_html__( 'Buy Now', 'cf7-extensions' ),
+            'preview'    => esc_html__( 'Preview', 'cf7-extensions' ),
+            'installing' => esc_html__( 'Installing..', 'cf7-extensions' ),
+            'activating' => esc_html__( 'Activating..', 'cf7-extensions' ),
+            'active'     => esc_html__( 'Activated', 'cf7-extensions' ),
         );
         wp_localize_script( 'htrp-plugin-install-manager', 'htrp_params', $localize_vars );
 
@@ -161,7 +161,7 @@ class Recommended_Plugins {
 
         ?>
             <div class="wrap">
-                <h2><?php echo get_admin_page_title(); ?></h2>
+                <h2><?php echo esc_html(get_admin_page_title()); ?></h2>
                 <style>
                     .htrp-admin-tab-pane{
                       display: none;
@@ -219,7 +219,7 @@ class Recommended_Plugins {
                                 if( array_key_exists( $plugin['slug'], $prepare_plugin ) ){
                                     $plugins_type = 'free';
                                     $image_url    = $this->plugin_icon( $plugins_type, $prepare_plugin[$data['slug']]['icons'] );
-                                    $description  = strip_tags( $prepare_plugin[$data['slug']]['description'] );
+                                    $description  = wp_strip_all_tags( $prepare_plugin[$data['slug']]['description'] );
                                     $author_name  = wp_kses( $prepare_plugin[$data['slug']]['author'], $this->plugins_allowedtags );
                                     $details_link = self_admin_url('plugin-install.php?tab=plugin-information&amp;plugin=' . $plugin['slug'] .'&amp;TB_iframe=true&amp;width=772&amp;height=577');
                                     $target       = '_self';
@@ -229,10 +229,10 @@ class Recommended_Plugins {
                                     $plugins_type = 'pro';
                                     $image_url     = $this->plugin_icon( $plugins_type, $plugin['slug'] );
                                     $description    = $plugin['description'];
-                                    $author_name    = esc_html__( 'HasTheme', $this->text_domain );
+                                    $author_name    = esc_html__( 'HasTheme', 'cf7-extensions' );
                                     $author_link    = $plugin['author_link'];
                                     $details_link   = $plugin['link'];
-                                    $button_text    = esc_html__('Buy Now', $this->text_domain );
+                                    $button_text    = esc_html__('Buy Now', 'cf7-extensions' );
                                     $button_classes = 'button button-primary';
                                     $target         = '_blank';
                                     $modal_class    = '';
@@ -244,18 +244,18 @@ class Recommended_Plugins {
                                     if ( file_exists( WP_PLUGIN_DIR . '/' . $data['location'] ) && is_plugin_inactive( $data['location'] ) ) {
 
                                         $button_classes = 'button htrp-activate-now button-primary';
-                                        $button_text    = esc_html__( 'Activate', $this->text_domain );
+                                        $button_text    = esc_html__( 'Activate', 'cf7-extensions' );
 
                                     // Not Installed.
                                     } elseif ( ! file_exists( WP_PLUGIN_DIR . '/' . $data['location'] ) ) {
 
                                         $button_classes = 'button htrp-install-now';
-                                        $button_text    = esc_html__( 'Install Now', $this->text_domain );
+                                        $button_text    = esc_html__( 'Install Now', 'cf7-extensions' );
 
                                     // Active.
                                     } else {
                                         $button_classes = 'button disabled';
-                                        $button_text    = esc_html__( 'Activated', $this->text_domain );
+                                        $button_text    = esc_html__( 'Activated', 'cf7-extensions' );
                                     }
 
                                     ?>
@@ -263,20 +263,20 @@ class Recommended_Plugins {
                                         <div class="plugin-card-top">
                                             <div class="name column-name" style="margin-right: 0;">
                                                 <h3>
-                                                    <a href="<?php echo esc_url( $details_link ) ?>" target="<?php echo esc_attr( $target ) ?>" <?php echo $modal_class; ?>>
+                                                    <a href="<?php echo esc_url( $details_link ) ?>" target="<?php echo esc_attr( $target ) ?>" <?php echo $modal_class; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>>	
                                                         <?php echo esc_html( $title ) ?>
                                                         <img src="<?php echo esc_url( $image_url ) ?>" class="plugin-icon" alt="<?php echo esc_attr( $title ) ?>">
                                                     </a>
                                                 </h3>
                                             </div>
                                             <div class="desc column-description" style="margin-right: 0;">
-                                                <p><?php echo wp_trim_words( $description, 23, '....'); ?></p>
+                                                <p><?php echo esc_html(wp_trim_words( $description, 23, '....')); ?></p>
                                                 <p class="authors">
-                                                    <cite><?php echo esc_html__( 'By ', $this->text_domain ); ?>
+                                                    <cite><?php echo esc_html__( 'By ', 'cf7-extensions' ); ?>
                                                         <?php if( $plugins_type == 'free' ): ?>
-                                                            <?php echo $author_name; ?>
+                                                            <?php echo wp_kses_post($author_name); ?>
                                                         <?php else: ?>
-                                                            <a href="<?php echo esc_url( $author_link ); ?>"  target="_blank" ><?php echo $author_name; ?></a>
+                                                            <a href="<?php echo esc_url( $author_link ); ?>"  target="_blank" ><?php echo esc_html($author_name); ?></a>
                                                         <?php endif; ?>
                                                     </cite>
                                                 </p>
@@ -286,20 +286,20 @@ class Recommended_Plugins {
                                             <div class="column-updated">
                                                 <?php
                                                     if (! file_exists( WP_PLUGIN_DIR . '/' . $data['location'] ) && $plugins_type == 'pro' ) {
-                                                        echo '<a class="button button-primary" href="'.esc_url( $details_link ).'" target="'.esc_attr( $target ).'">'.esc_html__( 'Buy Now', $this->text_domain ).'</a>';
+                                                        echo '<a class="button button-primary" href="'.esc_url( $details_link ).'" target="'.esc_attr( $target ).'">'.esc_html__( 'Buy Now', 'cf7-extensions' ).'</a>';
                                                     }else{
                                                 ?>
-                                                    <button class="<?php echo $button_classes; ?>" data-pluginopt='<?php echo wp_json_encode( $data ); ?>'><?php echo $button_text; ?></button>
+                                                    <button class="<?php echo esc_attr($button_classes); ?>" data-pluginopt='<?php echo wp_json_encode( $data ); ?>'><?php echo esc_html($button_text); ?></button>
                                                     
                                                 <?php } ?>
                                             </div>
                                             <div class="column-downloaded">
-                                                <a href="<?php echo esc_url( $details_link ) ?>" target="<?php echo esc_attr( $target ) ?>" <?php echo $modal_class; ?>><?php echo esc_html__('More Details', $this->text_domain) ?></a>
+                                                <a href="<?php echo esc_url( $details_link ) ?>" target="<?php echo esc_attr( $target ) ?>" <?php echo $modal_class; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?> ><?php echo esc_html__('More Details', 'cf7-extensions') ?></a>
                                                 <span class="downloaded-count">
                                                     <?php
                                                         if( $plugins_type == 'free' ){
                                                             /* translators: %s: Number of installations. */
-                                                            printf( __( '%s Active Installations', 'cf7-extensions' ), $this->active_install_count( $prepare_plugin[$data['slug']]['active_installs'] ) );
+                                                            printf( esc_html__( '%s Active Installations', 'cf7-extensions' ), esc_html($this->active_install_count( $prepare_plugin[$data['slug']]['active_installs'] )) );
                                                         }
                                                     ?>
                                                 </span>
@@ -398,7 +398,7 @@ class Recommended_Plugins {
                 wp_send_json_error(
                     array(
                         'success' => false,
-                        'message' => esc_html__( 'Plugin Not Found', $this->text_domain ),
+                        'message' => esc_html__( 'Plugin Not Found', 'cf7-extensions' ),
                     )
                 );
             }
@@ -418,7 +418,7 @@ class Recommended_Plugins {
             wp_send_json_success(
                 array(
                     'success' => true,
-                    'message' => esc_html__( 'Plugin Successfully Activated', $this->text_domain ),
+                    'message' => esc_html__( 'Plugin Successfully Activated', 'cf7-extensions' ),
                 )
             );
         }

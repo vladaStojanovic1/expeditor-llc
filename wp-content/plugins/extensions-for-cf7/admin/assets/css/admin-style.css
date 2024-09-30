@@ -40,6 +40,8 @@ table.ht-cf7-formlist-table th, table.ht-cf7-formlist-table td{
     display: none;
 }
 #extcf7-conditional-panel .extcf7-entry{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     border: 1px solid #d9cccc;
     padding: 15px 30px;
@@ -48,14 +50,20 @@ table.ht-cf7-formlist-table th, table.ht-cf7-formlist-table td{
 }
 
 #extcf7-conditional-panel .extcf7-and-rules-container{
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
 }
 #extcf7-conditional-panel .extcf7-entry .extcf7-and-rule{
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
     margin-bottom: 3px;
 }
 #extcf7-conditional-panel input.extcf7-if-field-value{
-    flex: 1;
+    -webkit-box-flex: 1;
+        -ms-flex: 1;
+            flex: 1;
 }
 #extcf7-conditional-panel .extcf7-if{
     margin: 0px 15px;
@@ -143,6 +151,7 @@ table.ht-cf7-formlist-table th, table.ht-cf7-formlist-table td{
 
 #extcf7-text-only-checkbox{
     opacity: 0;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
     width: 0;
     height: 0;
 }
@@ -173,6 +182,7 @@ table.ht-cf7-formlist-table th, table.ht-cf7-formlist-table td{
     bottom: 2px;
     background-color: white;
     -webkit-transition: .4s;
+    -webkit-transition: .3s;
     transition: .3s;
 }
 .extcf7-switch .extcf7-toggle-mode input:checked + .mode-slider {
@@ -180,7 +190,6 @@ table.ht-cf7-formlist-table th, table.ht-cf7-formlist-table td{
 }
 .extcf7-switch .extcf7-toggle-mode input:checked + .mode-slider:before {
     -webkit-transform: translateX(14px);
-    -ms-transform: translateX(14px);
     transform: translateX(14px);
 }
 
@@ -196,12 +205,13 @@ table.ht-cf7-formlist-table th, table.ht-cf7-formlist-table td{
   height: 21px;
 }
 .extcf7-checkbox input { 
-  opacity: 0;
+  opacity: 0; 
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=0)";
   width: 0;
   height: 0;
   position: absolute;
 }
-.extcf7-checkbox label::before {
+.extcf7-checkbox label:before {
   content: "";
   position: absolute;
   cursor: pointer;
@@ -216,26 +226,26 @@ table.ht-cf7-formlist-table th, table.ht-cf7-formlist-table td{
   transition: .3s;
   border-radius: 50px;
 }
-.extcf7-checkbox label::after {
+.extcf7-checkbox label:after {
   position: absolute;
   content: "";
   height: 16px;
   width: 20px;
   left: 4px;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   background-color: white;
   -webkit-transition: .3s;
   transition: .3s;
   border-radius: 50%;
 }
-.extcf7-checkbox input:checked + label::before {
+.extcf7-checkbox input:checked + label:before {
   background-color: #2196F3;
 }
-.extcf7-checkbox input:checked + label::after {
+.extcf7-checkbox input:checked + label:after {
   top: 50%;
   -webkit-transform: translateX(24px);
-  -ms-transform: translateX(24px);
   transform: translateX(22px)translateY(-50%);
 }
 
@@ -257,7 +267,6 @@ table.extcf7-form-data-details tr th, table.extcf7-form-data-details tr td{
   margin-right: 15px;
   padding: 0 20px;
   border-radius: 6px;
-  -webkit-box-shadow: 1px 4px 19px -11px #000000;
   box-shadow: 1px 4px 19px -11px #000000;
   position: relative;
   overflow: hidden;
@@ -270,11 +279,13 @@ table.extcf7-form-data-details tr th, table.extcf7-form-data-details tr td{
   font-size: 12px;
   text-transform: uppercase;
   text-align: center;
-  transform: rotate(-43deg);
+  -webkit-transform: rotate(-43deg);
+          transform: rotate(-43deg);
   position: absolute;
   top: 6px;
   left: -32px;
   width: 90px;
+  background-image: -webkit-linear-gradient(212deg,#9271ff 0,#5725ff 100%);
   background-image: linear-gradient(-122deg,#9271ff 0,#5725ff 100%);
   box-shadow: 0 3px 7px 0 rgba(0,5,41,.1);
   color: #fff;
@@ -284,7 +295,7 @@ table.extcf7-form-data-details tr th, table.extcf7-form-data-details tr td{
   position: relative;
 }
 
-.ext-cf7-options-area .extcf7-checkbox::before{
+.ext-cf7-options-area .extcf7-checkbox:before{
   content: "";
   position: absolute;
   top: 0;
@@ -296,6 +307,8 @@ table.extcf7-form-data-details tr th, table.extcf7-form-data-details tr td{
 }
 
 .ext-cf7-options-sidebar-adds-area{
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 
@@ -331,7 +344,7 @@ ul.ext-cf7-option-feature li {
   margin: 0;
   padding: 0 0 0 30px;
 }
-ul.ext-cf7-option-feature li::before {
+ul.ext-cf7-option-feature li:before {
   position: absolute;
   content: url(../images/icon/check.png);
   width: 15px;
@@ -355,6 +368,7 @@ ul.ext-cf7-option-feature li + li {
   padding: 5px 5px 5px 20px;
   border-radius: 25px;
   outline: 0;
+  -webkit-transition: 0.4s;
   transition: 0.4s;
   display: inline-block;
   text-decoration: none;
@@ -421,7 +435,6 @@ ul.ext-cf7-option-feature li + li {
 }
 
 .extcf7_pro-from-wraper p.submit input{
-  -webkit-box-shadow: 1px 4px 19px -11px #000000;
   box-shadow: 1px 4px 19px -11px #000000;
 }
 .extcf7-mt {
@@ -438,8 +451,13 @@ ul.ext-cf7-option-feature li + li {
   background-color: var(--extcf7-bg-body);
   border-radius: 3px;
   height: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
-  flex-direction: column;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
   margin-bottom: 15px;
 }
 .extcf7-mailchimp-pannel-wraper select,
@@ -523,16 +541,16 @@ span.invalid-api-message {
 .extcf7__row {
   display: -ms-flexbox;
   display: -webkit-box;
-  display: -webkit-flex;
   display: flex;
   -ms-flex-wrap: wrap;
-  -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
   margin-left: -15px;
 }
 .extcf7-feild-half {
       max-width: 100%;
-      flex: 0 0 100%;
+      -webkit-box-flex: 0;
+          -ms-flex: 0 0 100%;
+              flex: 0 0 100%;
 }
 .extcf7-for-mobile {
     margin-top: 15px;
@@ -549,6 +567,7 @@ span.invalid-api-message {
 .extcf7-mailchimp-custom-fields .col-3 {
   display: inline-block;
   width: 33.3%;
+  margin-bottom: 9.6px;
   margin-bottom: 0.6rem;
 }
 
@@ -586,6 +605,8 @@ span.invalid-api-message {
 }
 
 .extcf7-tooptip-wraper{
+  display: -webkit-box;
+  display: -ms-flexbox;
   display: flex;
 }
 .extcf7-tooltip-item {
@@ -626,7 +647,8 @@ a.extcf7-mailchiml-api-link{
   position: absolute;
   left:10px;
   top: 50%;
-  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
   color: #fff;
 }
 .extcf7-description.need-api p{
@@ -637,7 +659,10 @@ a.extcf7-mailchiml-api-link{
 
 @media (min-width: 768px) and (max-width: 1296px) {
   .ext-cf7-options-sidebar-adds-area{
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 
   .ext-cf7-option-rating-area{
@@ -654,7 +679,10 @@ a.extcf7-mailchiml-api-link{
 
 @media (max-width: 767px) {
   .ext-cf7-options-sidebar-adds-area{
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
   }
 
   .ext-cf7-option-rating-area{
@@ -686,7 +714,6 @@ a.extcf7-mailchiml-api-link{
   .extcf7-feild-half{
     -ms-flex: 0 0 50%;
     -webkit-box-flex: 0;
-    -webkit-flex: 0 0 50%;
     flex: 0 0 50%;
     max-width: 50%;
     position: relative;
@@ -718,6 +745,7 @@ a.extcf7-mailchiml-api-link{
   width: 100%;
 }
 .htcf7ext-list-area table {
+  font-size: 16px;
   font-size: 1rem;
 
   overflow: hidden;
@@ -773,8 +801,13 @@ a.extcf7-mailchiml-api-link{
 
 /* Sidebar - Get Pro */
 .htoptions-sidebar-adds-area {
+    display: -webkit-box;
+    display: -ms-flexbox;
     display: flex;
-    flex-direction: column;
+    -webkit-box-orient: vertical;
+    -webkit-box-direction: normal;
+        -ms-flex-direction: column;
+            flex-direction: column;
     gap: 30px;
 }
 .htcf7ext-opt-get-pro {
@@ -884,4 +917,13 @@ a.extcf7-mailchiml-api-link{
 }
 .htcf7ext-submissions .wp-list-table td .status.unread {
   background: #1d39d7d1;
+}
+
+span.button.extcf7-column-select {
+  margin-top: 10px;
+}
+.extcf7-column-code {
+  padding: 15px 20px;
+  background-color: #f1f1f1;
+  margin: 0;
 }

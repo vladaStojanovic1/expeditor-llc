@@ -2,8 +2,8 @@
 Contributors: htplugins, hasthemes, tarekht, zenaulislam, aslamhasib
 Tags: contact form 7, cf7, contact form DB, redirection
 Requires at least: 5.0
-Tested up to: 6.5
-Stable tag: 3.1.1
+Tested up to: 6.6
+Stable tag: 3.1.6
 License: GPLv2 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
 
@@ -21,6 +21,7 @@ Easily save contact form data, apply conditional logic in the fields and redirec
 3. Contact Form 7 Redirection, redirect to any page after form submission.
 4. Contact Form 7 Mailchimp, Integrate Contact Form 7 with Mailchimp effortlessly.
 5. Contact Form 7 Unread emails count badge in the admin menu & Read and Unread status indicator on emails list.
+6. Contact Form 7 Column field, create multiple column layouts.
 
 ####[Pro Version](https://hasthemes.com/plugins/cf7-extensions/?utm_source=wprepo&utm_medium=repodes&utm_campaign=freeplugin)
 1. Trigger a notice, if the form is already submitted. 
@@ -29,6 +30,7 @@ Easily save contact form data, apply conditional logic in the fields and redirec
 4. Telephone input field with country code and flag. 
 5. GDPR Field to take permission to save the submitted data. 
 6. Drag & Drop File Upload
+7. Autocomplete IP Geo Fields (Country, City, State, Zip)
 
 == Why You Should Choose Extensions for CF7 Plugin ==
 
@@ -126,6 +128,25 @@ Needs assistance to use this plugin?
 Feel free to [Contact us](https://hasthemes.com/contact-us/)
 
 == Changelog ==
+
+= Version: 3.1.6 - Date: 22 Aug 2024 =
+* Added: New column field extension to enable the creation of multiple column layouts.
+* Updated: Language translation .pot file
+
+= Version: 3.1.5 - Date: 29 July 2024 =
+* Tweak: Admin CSS for cross-browser compatibility.
+
+= Version: 3.1.4 - Date: 17 July 2024 =
+* Fixed: Escaping issue in multiple areas.
+* Tested: Compatibility with the latest version of WordPress.
+
+= Version: 3.1.3 - Date: 01 July 2024 =
+* Fixed: Translation issue in multiple areas.
+* Tweak: CSS for cross-browser compatibility.
+* Updated: Language translation .pot file
+
+= Version: 3.1.2 - Date: 03 June 2024 =
+* Fixed: JavaScript conflict issue with WP Ultimate Review plugin.
 
 = Version: 3.1.1 - Date: 22 May 2024 =
 * Added: Unread emails count badge in the admin menu.

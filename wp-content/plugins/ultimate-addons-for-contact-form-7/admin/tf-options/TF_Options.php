@@ -33,7 +33,7 @@ if ( ! class_exists( 'UACF7_Options' ) ) {
 			$this->load_taxonomy();
 
 			//enqueue scripts
-			add_action( 'admin_enqueue_scripts', array( $this, 'tf_options_admin_enqueue_scripts' ), 9 );
+			add_action( 'admin_enqueue_scripts', array( $this, 'tf_options_admin_enqueue_scripts' ), 1 );
 			add_action( 'admin_enqueue_scripts', array( $this, 'uacf7_admin_dequeue_scripts' ), 999 );
 			// add_action( 'wp_enqueue_scripts', array( $this, 'tf_options_wp_enqueue_scripts' ) );
 
@@ -192,6 +192,7 @@ if ( ! class_exists( 'UACF7_Options' ) ) {
 			if ( in_array( $screen, $tf_options_screens ) || in_array( $post_type, $tf_options_post_type ) ) {
 
 				wp_enqueue_style( 'uacf7-admin', UACF7_URL . 'assets/admin/css/uacf7-admin.min.css', '', UACF7_VERSION );
+				// wp_enqueue_style('wp-color-picker');
 
 				if ( $uacf7_enable_cdn_load_css == true ) {
 					wp_enqueue_style( 'uacf7-fontawesome-4', '//cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css', array(), $this->tf_options_version() );
@@ -217,6 +218,7 @@ if ( ! class_exists( 'UACF7_Options' ) ) {
 			if ( in_array( $screen, $tf_options_screens ) || in_array( $post_type, $tf_options_post_type ) ) {
 				// Custom
 
+				// wp_enqueue_script('wp-color-picker');
 				wp_enqueue_script( 'uacf7-admin', UACF7_URL . 'assets/admin/js/uacf7-admin-scripts.min.js', array( 'jquery', 'wp-data', 'wp-editor', 'wp-edit-post' ), UACF7_VERSION, true );
 
 				if ( $uacf7_enable_cdn_load_js == true ) {
@@ -269,20 +271,26 @@ if ( ! class_exists( 'UACF7_Options' ) ) {
 			wp_enqueue_script( 'wp-color-picker' );
 
 			$tf_google_map = function_exists( 'is_tf_pro' ) && is_tf_pro() && ! empty( tfopt( 'google-page-option' ) ) ? tfopt( 'google-page-option' ) : "false";
-			wp_localize_script( 'uacf7-admin', 'tf_options', array(
-				'ajax_url' => admin_url( 'admin-ajax.php' ),
-				'nonce' => wp_create_nonce( 'tf_options_nonce' ),
-				'gmaps' => $tf_google_map,
-				'tf_complete_order' => isset( $tf_complete_orders ) ? $tf_complete_orders : '',
-				'tf_cancel_orders' => isset( $tf_cancel_orders ) ? $tf_cancel_orders : '',
-				'tf_chart_enable' => isset( $tf_chart_enable ) ? $tf_chart_enable : '',
-				'tf_export_import_msg' => array(
-					'imported' => __( 'Imported successfully!', 'ultimate-addons-cf7' ),
-					'import_confirm' => __( 'Are you sure you want to import this data?', 'ultimate-addons-cf7' ),
-					'import_empty' => __( 'Import Data cannot be empty!', 'ultimate-addons-cf7' ),
+			wp_localize_script(
+				'uacf7-admin',
+				'tf_options',
+				array(
+					'ajax_url' => admin_url( 'admin-ajax.php' ),
+					'nonce' => wp_create_nonce( 'tf_options_nonce' ),
+					'gmaps' => $tf_google_map,
+					'tf_complete_order' => isset( $tf_complete_orders ) ? $tf_complete_orders : '',
+					'tf_cancel_orders' => isset( $tf_cancel_orders ) ? $tf_cancel_orders : '',
+					'tf_chart_enable' => isset( $tf_chart_enable ) ? $tf_chart_enable : '',
+					'tf_export_import_msg' => array(
+						'imported' => __( 'Imported successfully!', 'ultimate-addons-cf7' ),
+						'import_confirm' => __( 'Are you sure you want to import this data?', 'ultimate-addons-cf7' ),
+						'import_empty' => __( 'Import Data cannot be empty!', 'ultimate-addons-cf7' ),
+					)
 				)
-			) );
+			);
 		}
+
+
 
 		/**
 		 * Dequeue scripts

@@ -239,6 +239,23 @@ class Options_Field {
                     )
                 ),
                 array(
+                    'id'  => 'column_extension',
+                    'name'  => __( 'Column Field', 'cf7-extensions' ),
+                    'type'  => 'element',
+                    'default'=>'off',
+                    'label_on' => __( 'On', 'cf7-extensions' ),
+                    'label_off' => __( 'Off', 'cf7-extensions' ),
+                ),
+                array(
+                    'id'  => 'ip_geo_extension',
+                    'name'  => __( 'Autocomplete IP Geo Fields (Country, City, State, Zip)', 'cf7-extensions' ),
+                    'type'  => 'element',
+                    'default'=>'off',
+                    'label_on' => __( 'On', 'cf7-extensions' ),
+                    'label_off' => __( 'Off', 'cf7-extensions' ),
+                    'is_pro' => true,
+                ),
+                array(
                     'id'  => 'popup_extension',
                     'name'  => esc_html__( 'Popup Form Response', 'cf7-extensions' ),
                     'type'  => 'element',

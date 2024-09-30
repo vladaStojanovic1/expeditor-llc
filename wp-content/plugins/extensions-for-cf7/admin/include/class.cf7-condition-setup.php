@@ -143,11 +143,11 @@ function extcf7_properties($form_properties) {
                     $clear_on_hide = '';
                 }
 
-			    echo '<div data-id="'.$form_tag_id.'"'.$clear_on_hide.' data-class="extcf7_group">';
+			    echo '<div data-id="'.esc_attr($form_tag_id).'"'.esc_attr($clear_on_hide).' data-class="extcf7_group">';
 		    } else if ($cf7_form_part == '[/fields_group]') {
 	    		echo '</div>';
 		    } else {
-	    		echo $cf7_form_part;
+	    		echo $cf7_form_part; //phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 		    }
 	    }
 
@@ -180,6 +180,6 @@ function extcf7_conditional_form_hidden_fields($form_hidden_fields) {
     );
 
 	return array_merge($form_hidden_fields, array(
-        '_extcf7_conditional_options' => ''.json_encode($options),
+        '_extcf7_conditional_options' => ''.wp_json_encode($options),
     ));
 }

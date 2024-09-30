@@ -1,4 +1,7 @@
 <?php
+/**
+ * @phpcs:disable WordPress.DB.PreparedSQL.InterpolatedNotPrepared, WordPress.DB.DirectDatabaseQuery.DirectQuery, WordPress.DB.DirectDatabaseQuery.NoCaching
+ */
 namespace HTCf7Ext;
 
 /**
